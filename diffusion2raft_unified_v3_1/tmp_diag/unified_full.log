@@ -1,0 +1,46 @@
+Loading checkpoint shards:   0%|          | 0/9 [00:00<?, ?it/s]Loading checkpoint shards:  11%|█         | 1/9 [00:01<00:08,  1.02s/it]Loading checkpoint shards:  22%|██▏       | 2/9 [00:02<00:07,  1.02s/it]Loading checkpoint shards:  33%|███▎      | 3/9 [00:03<00:06,  1.01s/it]Loading checkpoint shards:  44%|████▍     | 4/9 [00:04<00:05,  1.08s/it]Loading checkpoint shards:  56%|█████▌    | 5/9 [00:05<00:04,  1.11s/it]Loading checkpoint shards:  67%|██████▋   | 6/9 [00:06<00:03,  1.11s/it]Loading checkpoint shards:  78%|███████▊  | 7/9 [00:07<00:02,  1.12s/it]Loading checkpoint shards:  89%|████████▉ | 8/9 [00:08<00:01,  1.10s/it]Loading checkpoint shards: 100%|██████████| 9/9 [00:09<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 9/9 [00:09<00:00,  1.00s/it]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  33%|███▎      | 2/6 [00:00<00:01,  2.40it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  7.67it/s][ALoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 18.91it/s]
+Loading pipeline components...:  67%|██████▋   | 4/6 [00:01<00:00,  3.60it/s]Loading pipeline components...:  83%|████████▎ | 5/6 [00:01<00:00,  3.73it/s]Loading pipeline components...: 100%|██████████| 6/6 [00:01<00:00,  3.94it/s]
+[1/40] 16ELhPMMHYV40g57W0XeMfH7_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/16ELhPMMHYV40g57W0XeMfH7_a_rectified.png
+[2/40] 1DbDh15f1F1fQ05dRFAE35HR_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/1DbDh15f1F1fQ05dRFAE35HR_a_rectified.png
+[3/40] 1EV00KT9DRaVUUJL2bAgSEL8_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/1EV00KT9DRaVUUJL2bAgSEL8_a_rectified.png
+[4/40] 1NbeXFV2fT4afe3UbJ32PtfK_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/1NbeXFV2fT4afe3UbJ32PtfK_a_rectified.png
+[5/40] 1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/1ba3rBPrWDbBh7dTQ9DT1TMS_a_rectified.png
+[6/40] 2CdRS1fhH1LTSDRy5AYD43FH_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/2CdRS1fhH1LTSDRy5AYD43FH_a_rectified.png
+[7/40] 2da67JQUMQb2rtWbSKByAF0a_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/2da67JQUMQb2rtWbSKByAF0a_a_rectified.png
+[8/40] 2tbCQ7d10febagQWYMT6EhKV_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/2tbCQ7d10febagQWYMT6EhKV_a_rectified.png
+[9/40] 3r3XBUad0SDKJU9LM0e92dh1_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/3r3XBUad0SDKJU9LM0e92dh1_a_rectified.png
+[10/40] 4Q3D5102RC670bSYM01h5EF4_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/4Q3D5102RC670bSYM01h5EF4_a_rectified.png
+[11/40] 5HKR7V9gbBHY29fMWSaX32Q8_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/5HKR7V9gbBHY29fMWSaX32Q8_a_rectified.png
+[12/40] 5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/5yB2tFd1PV5Fa2SLLWrXRg7U_a_rectified.png
+[13/40] 6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/6DJNJ4FbDa0JHN8R5f1XEMQK_a_rectified.png
+[14/40] 7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/7e8eSH1YD4Qa4gP2RUCab6Q6_a_rectified.png
+[15/40] 8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/8DdQ3A1H4UQRQadKDMTtWCBJ_a_rectified.png
+[16/40] A7NMCUty90b1aUJMF9FfThBY_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/A7NMCUty90b1aUJMF9FfThBY_a_rectified.png
+[17/40] AC3FKYgPESP4V1EKBQSeQHH1_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/AC3FKYgPESP4V1EKBQSeQHH1_a_rectified.png
+[18/40] CJDh0JQD4RbB84W5EfMDYrrB_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/CJDh0JQD4RbB84W5EfMDYrrB_a_rectified.png
+[19/40] DQH8La9PTDAPQh75DP3C5UKe_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/DQH8La9PTDAPQh75DP3C5UKe_a_rectified.png
+[20/40] DQR8FKBY5d6edYQdBeCWb0aB_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/DQR8FKBY5d6edYQdBeCWb0aB_a_rectified.png
+[21/40] ESM2QNNQadP4BR4AFah12a20_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/ESM2QNNQadP4BR4AFah12a20_a_rectified.png
+[22/40] FTEKCRtVAY93UrTVYf3F5yhW_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/FTEKCRtVAY93UrTVYf3F5yhW_a_rectified.png
+[23/40] J1NrQP4D3NDUd77gYT3heCUF_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/J1NrQP4D3NDUd77gYT3heCUF_a_rectified.png
+[24/40] JeA6NUF20VVP9QLHfPWDU3a6_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/JeA6NUF20VVP9QLHfPWDU3a6_a_rectified.png
+[25/40] LTRY1CYPASr2U42gfSM1V03U_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/LTRY1CYPASr2U42gfSM1V03U_a_rectified.png
+[26/40] Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/Lb6U5CHBA8LJ8VKJMDbJFTAW_a_rectified.png
+[27/40] MV44X5erCfYfARD144ULQ5U2_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/MV44X5erCfYfARD144ULQ5U2_a_rectified.png
+[28/40] Q8T9P9heRtSUMVKryL1K95MC_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/Q8T9P9heRtSUMVKryL1K95MC_a_rectified.png
+[29/40] QE9bhdPfA792B4LRQCLQD3eA_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/QE9bhdPfA792B4LRQCLQD3eA_a_rectified.png
+[30/40] QX2h0dfKatbN2UJY2QPX3W4A_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/QX2h0dfKatbN2UJY2QPX3W4A_a_rectified.png
+[31/40] R3T2WaefFEa04gERKe5fYHMU_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/R3T2WaefFEa04gERKe5fYHMU_a_rectified.png
+[32/40] a2b5rWhRUYXSJP19CdFUb1bE_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/a2b5rWhRUYXSJP19CdFUb1bE_a_rectified.png
+[33/40] aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/aaEHAY6hC2B5f5YHJWfrTy0P_a_rectified.png
+[34/40] b6bQDdag3DNMKFe2aVCDQre7_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/b6bQDdag3DNMKFe2aVCDQre7_a_rectified.png
+[35/40] dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/dH0hWBg4VP9NL9TY0NbgCL1R_a_rectified.png
+[36/40] dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/dNV2hVyY0eCTPXXEHDDWNC2T_a_rectified.png
+[37/40] f24X1MaM3Sb25D52SAe9XQg3_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/f24X1MaM3Sb25D52SAe9XQg3_a_rectified.png
+[38/40] g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/g5Q9W9JUHba1LBBPa6CAUHRa_a_rectified.png
+[39/40] gYVt22gMNyL0SLR9X7fJdWaA_a.jpg -> runs/d2r_v3_1/typical_unified_letterbox/gYVt22gMNyL0SLR9X7fJdWaA_a_rectified.png
+[40/40] typical.jpg -> runs/d2r_v3_1/typical_unified_letterbox/typical_rectified.png
+completed 40/40 images; errors=0 report=runs/d2r_v3_1/typical_unified_letterbox/inference_report.json

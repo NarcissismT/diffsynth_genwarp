@@ -1,0 +1,26 @@
+extends: base_full.yaml
+
+loss:
+  velocity: 0.0
+  residual_endpoint: 0.0
+  map: 1.0
+  coarse_map: 0.5
+  preserve: 0.10
+
+train:
+  stage: warr
+  parent_checkpoint: ${DOCGRID_STAGE2_PARENT_CHECKPOINT:-runs/docgrid_v2/stage1_coarse/seed-1337/best.pt}
+  gate_receipts:
+    gate1: ${DOCGRID_GATE1_RECEIPT:-runs/docgrid_v2/gates/gate1.json}
+  output_dir: runs/docgrid_v2/stage2_warr/seed-1337
+  epochs: 20
+  learning_rate: 0.0002
+  phase_schedule:
+    - name: warr_warmup
+      profile: warr
+      duration_fraction: 0.20
+      learning_rate: 0.0002
+    - name: warr_joint_finetune
+      profile: warr_joint
+      duration_fraction: 0.80
+      learning_rate: 0.00002

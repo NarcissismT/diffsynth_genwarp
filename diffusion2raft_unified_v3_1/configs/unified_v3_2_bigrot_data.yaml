@@ -1,0 +1,126 @@
+# Data-only v3.2 recipe. Do not train this arbitrary-orientation distribution
+# with the v3.1 local prior alone: pair it with the v3.2 global-pose prior.
+seed: 42
+device: cuda
+data:
+  train_manifest: data/train.jsonl
+  val_manifest: data/val.jsonl
+  work_size:
+  - 512
+  - 512
+  batch_size: 1
+  num_workers: 4
+  guide_artifact_prob: 0.65
+  guide_dropout_prob: 0.1
+  # Applied to warped/source only. Target and guide stay on the canonical
+  # canvas; the loader composes this homography into backward-flow GT.
+  source_geometry_augment:
+    probability: 0.70
+    max_rotation_deg: 180.0
+    scale:
+    - 0.85
+    - 1.05
+    translation:
+    - 0.04
+    - 0.04
+    perspective: 0.025
+model:
+  feature_backend: qwen
+  feature_channels: 96
+  feature_stride: 8
+  cnn_feature_channels: 64
+  refiner_hidden_channels: 128
+  refiner_iterations: 6
+  correlation_radius: 4
+  correlation_temperature: 1.0
+  correlation_temperature_start: 9.797959
+  correlation_ramp_start_epoch: 9
+  correlation_ramp_epochs: 3
+  match_temperature: 0.1
+  shared_qwen_projection: false
+  feature_dropout_prob: 0.1
+  prior_base_channels: 32
+  prior_max_displacement_ratio: 0.35
+  prior_control_stride: 8
+  max_residual_px: 24.0
+train:
+  stage: unified
+  epochs: 20
+  lr_prior: 0.0002
+  lr_prior_joint: 5.0e-06
+  lr_unified: 0.0001
+  lr_raft: 2.0e-05
+  freeze_prior_epochs: 12
+  weight_decay: 1.0e-05
+  grad_clip: 1.0
+  amp: true
+  amp_dtype: bfloat16
+  log_every: 20
+  save_every: 1
+  preview_every: 1
+  output_dir: runs/d2r_v3_2_bigrot_data
+  # Select checkpoints on long text/table structures, not white-background EPE.
+  best_metric: line_epe
+  best_metric_mode: min
+  resume: null
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  prior_flow_unified: 0.25
+  reconstruction: 0.15
+  gradient: 0.1
+  structure_flow: 0.15
+  line_reconstruction: 0.05
+  flow_gradient: 0.05
+  curvature: 0.02
+  line_straightness: 0.10
+  structure_edge_threshold: 0.08
+  structure_edge_temperature: 0.04
+  structure_line_kernel: 15
+  structure_line_threshold: 0.20
+  structure_line_temperature: 0.05
+  bending: 0.002
+  anti_fold: 0.2
+  residual: 0.002
+  residual_flow: 0.25
+  qwen_match: 0.05
+  confidence: 0.02
+  residual_target_iterations: 6
+  max_residual_target: 24.0
+  max_residual_consistency: 1.0
+  gate_temperature_px: 1.0
+  min_jacobian: 0.05
+qwen:
+  model_id: /juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio/models/Qwen-Image-Edit
+  prompt: Rectify the warped photographed document into a flat front-facing page on
+    the same canvas. Preserve every character, line, illustration, and margin. Do
+    not add, remove, rewrite, translate, sharpen, or restyle any content. Change geometry
+    only.
+  feature_num_inference_steps: 4
+  feature_type: hidden
+  feature_layers:
+  - -24
+  - -12
+  - -1
+  feature_dtype: bfloat16
+  feature_quantization: none
+  quantize_components:
+  - transformer
+  feature_seed: 0
+  guidance_scale: 1.0
+  cpu_offload: false
+  local_files_only: true
+  # Multi-GPU sharding for single-node inference on 24GB cards. The 20B
+  # transformer is sharded across GPUs with accelerate (bf16, identical to
+  # training); the rectifier stays on cuda:0 and the text encoder / VAE on the
+  # support device. Leave device_map null on large-VRAM training nodes.
+  device_map: null
+  device_map_support_device: cuda:1
+  device_map_max_memory_per_gpu: 20GiB
+inference:
+  # Real photos have widely varying aspect ratios. Keep geometry intact on the
+  # 512x512 model canvas and invert the letterbox through absolute coordinates.
+  resize_policy: letterbox
+  padding_mode: replicate

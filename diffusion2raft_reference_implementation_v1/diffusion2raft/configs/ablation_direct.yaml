@@ -1,0 +1,74 @@
+# README ablation #2: 直接 RAFT(guide, warped) 基线。
+#
+# RAFT 直接从 guide->warped 预测完整 flow，没有 warped-only 预矫正、没有残差
+# bound、没有 guide dropout。这是方法要超越的 baseline：它会追逐 guide 里
+# 生成/错字的内容，用来量化 bounded-residual 复合模型带来的收益。
+#
+# 用法：
+#   d2r-train --config configs/ablation_direct.yaml --stage joint
+#   d2r-eval  --config configs/ablation_direct.yaml --stage joint \
+#             --checkpoint runs/d2r_ablation_direct/joint/latest.pt \
+#             --manifest data/val.jsonl
+seed: 42
+device: cuda
+
+data:
+  train_manifest: data/train.jsonl
+  val_manifest: data/val.jsonl
+  work_size: [768, 768]
+  batch_size: 2
+  num_workers: 4
+  # baseline 不做 guide artifact / dropout，保持"直接吃 guide"的最坏情况。
+  guide_artifact_prob: 0.0
+  guide_dropout_prob: 0.0
+
+model:
+  raft_size: large
+  raft_pretrained: true
+  raft_checkpoint: null
+  prior_base_channels: 32
+  prior_max_displacement_ratio: 0.35
+  prior_control_stride: 8
+  max_residual_px: 32.0
+  guide_dropout_prob: 0.0
+  # 关键开关：direct 让 RAFT 直接输出 final flow，不经过 prior 复合。
+  residual_mode: direct
+
+train:
+  stage: joint
+  epochs: 20
+  lr_prior: 0.0002
+  # direct 模式下 prior 不参与最终 flow，只被 prior_flow 损失弱监督，可调小。
+  lr_raft: 0.0001
+  weight_decay: 0.00001
+  grad_clip: 1.0
+  amp: true
+  log_every: 20
+  save_every: 1
+  output_dir: runs/d2r_ablation_direct
+  resume: null
+
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  # direct baseline 不复合 prior，把 prior_flow 权重压低以免干扰 RAFT 的完整流。
+  prior_flow: 0.05
+  reconstruction: 0.15
+  gradient: 0.10
+  bending: 0.02
+  anti_fold: 0.20
+  residual: 0.0
+  min_jacobian: 0.05
+
+qwen:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  prompt: >-
+    Rectify the warped photographed document into a flat front-facing page on
+    the same canvas. Preserve every character, line, illustration, and margin.
+    Do not add, remove, rewrite, translate, sharpen, or restyle any content.
+    Change geometry only.
+  num_inference_steps: 40
+  true_cfg_scale: 4.0
+  guidance_scale: 1.0
+  seed: 0

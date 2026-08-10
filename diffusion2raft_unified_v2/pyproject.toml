@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diffusion2raft"
+version = "0.2.0"
+description = "Unified Qwen-feature optical flow rectification while preserving source pixels"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "Pillow>=10.0",
+  "PyYAML>=6.0",
+  "torch>=2.1",
+  "torchvision>=0.16",
+]
+
+[project.optional-dependencies]
+qwen = [
+  "accelerate>=1.0",
+  "diffusers>=0.39",
+  "safetensors>=0.4",
+  "transformers>=4.51",
+]
+dev = ["pytest>=8.0"]
+memory = ["bitsandbytes>=0.46"]
+
+[project.scripts]
+d2r-train = "diffusion2raft.train:main"
+d2r-infer = "diffusion2raft.infer:main"
+d2r-generate-guides = "diffusion2raft.qwen_guide:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

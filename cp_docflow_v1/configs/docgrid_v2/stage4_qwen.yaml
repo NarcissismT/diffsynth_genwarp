@@ -1,0 +1,15 @@
+extends: base_full.yaml
+
+model:
+  instantiate_qwen_adapter: true
+
+train:
+  stage: qwen
+  parent_checkpoint: ${DOCGRID_STAGE4_PARENT_CHECKPOINT:-runs/docgrid_v2/stage3_coordinate_fm/seed-1337/best.pt}
+  gate_receipts:
+    gate1: ${DOCGRID_GATE1_RECEIPT:-runs/docgrid_v2/gates/gate1.json}
+    gate2: ${DOCGRID_GATE2_RECEIPT:-runs/docgrid_v2/gates/gate2.json}
+    gate3: ${DOCGRID_GATE3_RECEIPT:-runs/docgrid_v2/gates/gate3.json}
+  output_dir: runs/docgrid_v2/stage4_qwen/seed-1337
+  epochs: 10
+  learning_rate: 0.0001

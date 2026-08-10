@@ -1,0 +1,2387 @@
+{
+  "schema_version": 1,
+  "metric_family": "opencv_lsd_axis_alignment",
+  "proxy_notice": "OpenCV LSD axis alignment is a no-reference structural proxy, not proof of overall rectification quality or content fidelity.",
+  "images_directory": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical",
+  "config": {
+    "max_dimension": 1600,
+    "min_length_fraction": 0.03,
+    "axis_threshold_deg": 5.0,
+    "mask_min_coverage": 0.9,
+    "candidate_suffixes": [
+      "_rectified",
+      "-rectified",
+      ".rectified"
+    ],
+    "mask_suffixes": [
+      "_evaluation_valid",
+      "_eval_valid",
+      "_valid",
+      "-valid",
+      ".valid"
+    ]
+  },
+  "candidates": {
+    "warped": {
+      "directory": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical",
+      "valid_mask_directory": null,
+      "summary": {
+        "indexed_images": 40,
+        "paired_images": 40,
+        "evaluated_images": 40,
+        "missing_images": 0,
+        "missing_masks": 0,
+        "no_line_images": 0,
+        "total_line_count": 9279,
+        "total_line_length_px": 1128861.591683386,
+        "pooled_orientation_error_deg": 7.13669499158856,
+        "pooled_orientation_error_deg_length_weighted": 6.917471001832958,
+        "pooled_axis_fraction": 0.6498545101842871,
+        "pooled_axis_fraction_length_weighted": 0.692617413947409,
+        "image_mean_orientation_error_deg": 9.884326249935906,
+        "image_median_orientation_error_deg": 6.257580592204306,
+        "image_mean_orientation_error_deg_length_weighted": 9.12060557651722,
+        "image_median_orientation_error_deg_length_weighted": 5.320161550549517,
+        "image_mean_axis_fraction": 0.5476862726485726,
+        "image_mean_axis_fraction_length_weighted": 0.5992908600339091
+      },
+      "per_image": [
+        {
+          "basename": "16ELhPMMHYV40g57W0XeMfH7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 250,
+            "total_line_length_px": 20748.389804834685,
+            "orientation_error_deg": 12.395095210970194,
+            "orientation_error_deg_length_weighted": 9.800426837965128,
+            "axis_fraction": 0.416,
+            "axis_fraction_length_weighted": 0.5458681944230508,
+            "orientation_error_sum_deg": 3098.7738027425485,
+            "orientation_error_length_sum_deg_px": 203343.0762878639,
+            "axis_line_count": 104,
+            "axis_line_length_px": 11325.886079950746
+          }
+        },
+        {
+          "basename": "1ba3rBPrWDbBh7dTQ9DT1TMS_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 194,
+            "total_line_length_px": 28662.48589547954,
+            "orientation_error_deg": 4.54028403051679,
+            "orientation_error_deg_length_weighted": 4.253880405239477,
+            "axis_fraction": 0.7938144329896907,
+            "axis_fraction_length_weighted": 0.8620669592574081,
+            "orientation_error_sum_deg": 880.8151019202572,
+            "orientation_error_length_sum_deg_px": 121926.78711623332,
+            "axis_line_count": 154,
+            "axis_line_length_px": 24708.982060674396
+          }
+        },
+        {
+          "basename": "1DbDh15f1F1fQ05dRFAE35HR_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 347,
+            "total_line_length_px": 35479.7054521497,
+            "orientation_error_deg": 1.6407964844308778,
+            "orientation_error_deg_length_weighted": 1.7000765308599102,
+            "axis_fraction": 0.9596541786743515,
+            "axis_fraction_length_weighted": 0.9674878482418823,
+            "orientation_error_sum_deg": 569.3563800975146,
+            "orientation_error_length_sum_deg_px": 60318.2145610221,
+            "axis_line_count": 333,
+            "axis_line_length_px": 34326.18388415609
+          }
+        },
+        {
+          "basename": "1EV00KT9DRaVUUJL2bAgSEL8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 815,
+            "total_line_length_px": 56548.52606897834,
+            "orientation_error_deg": 1.4237532771969936,
+            "orientation_error_deg_length_weighted": 1.3559417042158406,
+            "axis_fraction": 0.9779141104294479,
+            "axis_fraction_length_weighted": 0.981904817610181,
+            "orientation_error_sum_deg": 1160.3589209155498,
+            "orientation_error_length_sum_deg_px": 76676.50480886438,
+            "axis_line_count": 797,
+            "axis_line_length_px": 55525.27017588474
+          }
+        },
+        {
+          "basename": "1NbeXFV2fT4afe3UbJ32PtfK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 148,
+            "total_line_length_px": 20845.861686454322,
+            "orientation_error_deg": 5.735491116526921,
+            "orientation_error_deg_length_weighted": 4.599481765781182,
+            "axis_fraction": 0.7432432432432432,
+            "axis_fraction_length_weighted": 0.820645258075015,
+            "orientation_error_sum_deg": 848.8526852459843,
+            "orientation_error_length_sum_deg_px": 95880.16071884322,
+            "axis_line_count": 110,
+            "axis_line_length_px": 17107.057543476374
+          }
+        },
+        {
+          "basename": "2CdRS1fhH1LTSDRy5AYD43FH_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 265,
+            "total_line_length_px": 20598.25684203005,
+            "orientation_error_deg": 5.6022181131504825,
+            "orientation_error_deg_length_weighted": 4.875779660756126,
+            "axis_fraction": 0.5132075471698113,
+            "axis_fraction_length_weighted": 0.6357447459135739,
+            "orientation_error_sum_deg": 1484.5877999848778,
+            "orientation_error_length_sum_deg_px": 100432.56175740082,
+            "axis_line_count": 136,
+            "axis_line_length_px": 13095.233562298929
+          }
+        },
+        {
+          "basename": "2da67JQUMQb2rtWbSKByAF0a_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 2188,
+            "total_line_length_px": 252648.3588051782,
+            "orientation_error_deg": 3.162191174368104,
+            "orientation_error_deg_length_weighted": 2.8423165002303485,
+            "axis_fraction": 0.7911334552102377,
+            "axis_fraction_length_weighted": 0.8451125808429847,
+            "orientation_error_sum_deg": 6918.874289517411,
+            "orientation_error_length_sum_deg_px": 718106.5989880755,
+            "axis_line_count": 1731,
+            "axis_line_length_px": 213516.30655558856
+          }
+        },
+        {
+          "basename": "2tbCQ7d10febagQWYMT6EhKV_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 174,
+            "total_line_length_px": 29980.61599386455,
+            "orientation_error_deg": 26.79979520839166,
+            "orientation_error_deg_length_weighted": 31.241764534091104,
+            "axis_fraction": 0.20689655172413793,
+            "axis_fraction_length_weighted": 0.17026128677905258,
+            "orientation_error_sum_deg": 4663.164366260149,
+            "orientation_error_length_sum_deg_px": 936647.345467322,
+            "axis_line_count": 36,
+            "axis_line_length_px": 5104.538257544023
+          }
+        },
+        {
+          "basename": "3r3XBUad0SDKJU9LM0e92dh1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 103,
+            "total_line_length_px": 11764.701025729428,
+            "orientation_error_deg": 7.222689190332334,
+            "orientation_error_deg_length_weighted": 5.982603339115066,
+            "axis_fraction": 0.47572815533980584,
+            "axis_fraction_length_weighted": 0.5951629054464271,
+            "orientation_error_sum_deg": 743.9369866042304,
+            "orientation_error_length_sum_deg_px": 70383.53964021931,
+            "axis_line_count": 49,
+            "axis_line_length_px": 7001.913644181687
+          }
+        },
+        {
+          "basename": "4Q3D5102RC670bSYM01h5EF4_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 208,
+            "total_line_length_px": 27311.378605411694,
+            "orientation_error_deg": 4.919755020859213,
+            "orientation_error_deg_length_weighted": 4.5911018648929325,
+            "axis_fraction": 0.5096153846153846,
+            "axis_fraction_length_weighted": 0.5300440632701641,
+            "orientation_error_sum_deg": 1023.3090443387164,
+            "orientation_error_length_sum_deg_px": 125389.32124810255,
+            "axis_line_count": 106,
+            "axis_line_length_px": 14476.23408952224
+          }
+        },
+        {
+          "basename": "5HKR7V9gbBHY29fMWSaX32Q8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 462,
+            "total_line_length_px": 39908.952060373005,
+            "orientation_error_deg": 9.053781219865948,
+            "orientation_error_deg_length_weighted": 8.360164048010846,
+            "axis_fraction": 0.19047619047619047,
+            "axis_fraction_length_weighted": 0.24442979820687563,
+            "orientation_error_sum_deg": 4182.8469235780685,
+            "orientation_error_length_sum_deg_px": 333645.38620891876,
+            "axis_line_count": 88,
+            "axis_line_length_px": 9754.937098764847
+          }
+        },
+        {
+          "basename": "5yB2tFd1PV5Fa2SLLWrXRg7U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 111,
+            "total_line_length_px": 19417.672987766695,
+            "orientation_error_deg": 4.381491308683212,
+            "orientation_error_deg_length_weighted": 3.389187551641181,
+            "axis_fraction": 0.8918918918918919,
+            "axis_fraction_length_weighted": 0.9368921187764435,
+            "orientation_error_sum_deg": 486.3455352638365,
+            "orientation_error_length_sum_deg_px": 65810.1355719781,
+            "axis_line_count": 99,
+            "axis_line_length_px": 18192.264787216853
+          }
+        },
+        {
+          "basename": "6DJNJ4FbDa0JHN8R5f1XEMQK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 79,
+            "total_line_length_px": 9802.44146676934,
+            "orientation_error_deg": 13.285016503038738,
+            "orientation_error_deg_length_weighted": 10.036691037895077,
+            "axis_fraction": 0.26582278481012656,
+            "axis_fraction_length_weighted": 0.4309638543621402,
+            "orientation_error_sum_deg": 1049.5163037400603,
+            "orientation_error_length_sum_deg_px": 98384.0764190149,
+            "axis_line_count": 21,
+            "axis_line_length_px": 4224.497956678186
+          }
+        },
+        {
+          "basename": "7e8eSH1YD4Qa4gP2RUCab6Q6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 183,
+            "total_line_length_px": 18736.09109306569,
+            "orientation_error_deg": 8.121241200769413,
+            "orientation_error_deg_length_weighted": 5.038097723213493,
+            "axis_fraction": 0.726775956284153,
+            "axis_fraction_length_weighted": 0.8676324369447102,
+            "orientation_error_sum_deg": 1486.1871397408026,
+            "orientation_error_length_sum_deg_px": 94394.25787789487,
+            "axis_line_count": 133,
+            "axis_line_length_px": 16256.040373894662
+          }
+        },
+        {
+          "basename": "8DdQ3A1H4UQRQadKDMTtWCBJ_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 85,
+            "total_line_length_px": 10795.172155937225,
+            "orientation_error_deg": 9.781352681937337,
+            "orientation_error_deg_length_weighted": 9.022435056738368,
+            "axis_fraction": 0.5176470588235295,
+            "axis_fraction_length_weighted": 0.639928275628393,
+            "orientation_error_sum_deg": 831.4149779646737,
+            "orientation_error_length_sum_deg_px": 97398.73970325394,
+            "axis_line_count": 44,
+            "axis_line_length_px": 6908.135902860551
+          }
+        },
+        {
+          "basename": "a2b5rWhRUYXSJP19CdFUb1bE_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 18,
+            "total_line_length_px": 2146.3729173720385,
+            "orientation_error_deg": 4.803810989410142,
+            "orientation_error_deg_length_weighted": 5.60222537788554,
+            "axis_fraction": 0.6111111111111112,
+            "axis_fraction_length_weighted": 0.5623078217224264,
+            "orientation_error_sum_deg": 86.46859780938254,
+            "orientation_error_length_sum_deg_px": 12024.464828107859,
+            "axis_line_count": 11,
+            "axis_line_length_px": 1206.9222797714806
+          }
+        },
+        {
+          "basename": "A7NMCUty90b1aUJMF9FfThBY_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 481,
+            "total_line_length_px": 54261.2515850985,
+            "orientation_error_deg": 2.6869741942470684,
+            "orientation_error_deg_length_weighted": 2.0095645095745187,
+            "axis_fraction": 0.8877338877338877,
+            "axis_fraction_length_weighted": 0.9319885221513916,
+            "orientation_error_sum_deg": 1292.4345874328399,
+            "orientation_error_length_sum_deg_px": 109041.48543050805,
+            "axis_line_count": 427,
+            "axis_line_length_px": 50570.863674880806
+          }
+        },
+        {
+          "basename": "aaEHAY6hC2B5f5YHJWfrTy0P_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 116,
+            "total_line_length_px": 27985.331087869647,
+            "orientation_error_deg": 2.922834972492306,
+            "orientation_error_deg_length_weighted": 1.5710492667696725,
+            "axis_fraction": 0.8448275862068966,
+            "axis_fraction_length_weighted": 0.9415908526145845,
+            "orientation_error_sum_deg": 339.0488568091075,
+            "orientation_error_length_sum_deg_px": 43966.33388590413,
+            "axis_line_count": 98,
+            "axis_line_length_px": 26350.73175972862
+          }
+        },
+        {
+          "basename": "AC3FKYgPESP4V1EKBQSeQHH1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 60,
+            "total_line_length_px": 6989.228989109445,
+            "orientation_error_deg": 10.129450789135213,
+            "orientation_error_deg_length_weighted": 11.123087240855382,
+            "axis_fraction": 0.6,
+            "axis_fraction_length_weighted": 0.570514760031603,
+            "orientation_error_sum_deg": 607.7670473481128,
+            "orientation_error_length_sum_deg_px": 77741.80379217982,
+            "axis_line_count": 36,
+            "axis_line_length_px": 3987.4582995276983
+          }
+        },
+        {
+          "basename": "b6bQDdag3DNMKFe2aVCDQre7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 66,
+            "total_line_length_px": 4955.024737531817,
+            "orientation_error_deg": 32.64049941217684,
+            "orientation_error_deg_length_weighted": 33.3410873481342,
+            "axis_fraction": 0.06060606060606061,
+            "axis_fraction_length_weighted": 0.06211672690671823,
+            "orientation_error_sum_deg": 2154.272961203671,
+            "orientation_error_length_sum_deg_px": 165205.91258621405,
+            "axis_line_count": 4,
+            "axis_line_length_px": 307.78991843729705
+          }
+        },
+        {
+          "basename": "CJDh0JQD4RbB84W5EfMDYrrB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 122,
+            "total_line_length_px": 21057.932024538815,
+            "orientation_error_deg": 5.433796945672599,
+            "orientation_error_deg_length_weighted": 3.9905770533877907,
+            "axis_fraction": 0.6557377049180327,
+            "axis_fraction_length_weighted": 0.7055246857114021,
+            "orientation_error_sum_deg": 662.9232273720571,
+            "orientation_error_length_sum_deg_px": 84033.3003289245,
+            "axis_line_count": 80,
+            "axis_line_length_px": 14856.890873344817
+          }
+        },
+        {
+          "basename": "dH0hWBg4VP9NL9TY0NbgCL1R_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 114,
+            "total_line_length_px": 22654.498526527383,
+            "orientation_error_deg": 6.77967006788169,
+            "orientation_error_deg_length_weighted": 5.890940976379819,
+            "axis_fraction": 0.6842105263157895,
+            "axis_fraction_length_weighted": 0.7738587339826998,
+            "orientation_error_sum_deg": 772.8823877385126,
+            "orientation_error_length_sum_deg_px": 133456.3136692564,
+            "axis_line_count": 78,
+            "axis_line_length_px": 17531.38154875142
+          }
+        },
+        {
+          "basename": "dNV2hVyY0eCTPXXEHDDWNC2T_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 201,
+            "total_line_length_px": 30259.476738526046,
+            "orientation_error_deg": 27.551745198565158,
+            "orientation_error_deg_length_weighted": 24.93473654053673,
+            "axis_fraction": 0.009950248756218905,
+            "axis_fraction_length_weighted": 0.00569158097920207,
+            "orientation_error_sum_deg": 5537.900784911597,
+            "orientation_error_length_sum_deg_px": 754512.0803296466,
+            "axis_line_count": 2,
+            "axis_line_length_px": 172.22426224560232
+          }
+        },
+        {
+          "basename": "DQH8La9PTDAPQh75DP3C5UKe_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 174,
+            "total_line_length_px": 27875.52761158103,
+            "orientation_error_deg": 3.352139003853134,
+            "orientation_error_deg_length_weighted": 2.3500795936637187,
+            "axis_fraction": 0.8735632183908046,
+            "axis_fraction_length_weighted": 0.9111620272350732,
+            "orientation_error_sum_deg": 583.2721866704453,
+            "orientation_error_length_sum_deg_px": 65509.70860258611,
+            "axis_line_count": 152,
+            "axis_line_length_px": 25399.12224881543
+          }
+        },
+        {
+          "basename": "DQR8FKBY5d6edYQdBeCWb0aB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 80,
+            "total_line_length_px": 9192.604626570508,
+            "orientation_error_deg": 33.33755204229505,
+            "orientation_error_deg_length_weighted": 34.73535383967606,
+            "axis_fraction": 0.025,
+            "axis_fraction_length_weighted": 0.017597899556125243,
+            "orientation_error_sum_deg": 2667.004163383604,
+            "orientation_error_length_sum_deg_px": 319308.3744121698,
+            "axis_line_count": 2,
+            "axis_line_length_px": 161.77053287756002
+          }
+        },
+        {
+          "basename": "ESM2QNNQadP4BR4AFah12a20_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 157,
+            "total_line_length_px": 21808.37069904274,
+            "orientation_error_deg": 11.68897102210613,
+            "orientation_error_deg_length_weighted": 10.58694994992587,
+            "axis_fraction": 0.08280254777070063,
+            "axis_fraction_length_weighted": 0.0479786624100905,
+            "orientation_error_sum_deg": 1835.1684504706625,
+            "orientation_error_length_sum_deg_px": 230884.12908019536,
+            "axis_line_count": 13,
+            "axis_line_length_px": 1046.3364554834811
+          }
+        },
+        {
+          "basename": "f24X1MaM3Sb25D52SAe9XQg3_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 159,
+            "total_line_length_px": 19503.444912622712,
+            "orientation_error_deg": 4.499141586713819,
+            "orientation_error_deg_length_weighted": 3.1638103274115896,
+            "axis_fraction": 0.6918238993710691,
+            "axis_fraction_length_weighted": 0.7952777645886567,
+            "orientation_error_sum_deg": 715.3635122874972,
+            "orientation_error_length_sum_deg_px": 61705.200434658764,
+            "axis_line_count": 110,
+            "axis_line_length_px": 15510.6560718886
+          }
+        },
+        {
+          "basename": "FTEKCRtVAY93UrTVYf3F5yhW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 86,
+            "total_line_length_px": 10943.686588511087,
+            "orientation_error_deg": 4.485670688408589,
+            "orientation_error_deg_length_weighted": 4.268901505985774,
+            "axis_fraction": 0.6744186046511628,
+            "axis_fraction_length_weighted": 0.6859929702119464,
+            "orientation_error_sum_deg": 385.7676792031386,
+            "orientation_error_length_sum_deg_px": 46717.52015873129,
+            "axis_line_count": 58,
+            "axis_line_length_px": 7507.292067921364
+          }
+        },
+        {
+          "basename": "g5Q9W9JUHba1LBBPa6CAUHRa_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 101,
+            "total_line_length_px": 10259.413738941546,
+            "orientation_error_deg": 15.366496292871659,
+            "orientation_error_deg_length_weighted": 15.584671335799262,
+            "axis_fraction": 0.1782178217821782,
+            "axis_fraction_length_weighted": 0.19239899428511822,
+            "orientation_error_sum_deg": 1552.0161255800376,
+            "orientation_error_length_sum_deg_px": 159889.59121938745,
+            "axis_line_count": 18,
+            "axis_line_length_px": 1973.900885327278
+          }
+        },
+        {
+          "basename": "gYVt22gMNyL0SLR9X7fJdWaA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 223,
+            "total_line_length_px": 28245.448529022397,
+            "orientation_error_deg": 9.662168355631453,
+            "orientation_error_deg_length_weighted": 9.175920122711531,
+            "axis_fraction": 0.3811659192825112,
+            "axis_fraction_length_weighted": 0.33725675344923584,
+            "orientation_error_sum_deg": 2154.663543305814,
+            "orientation_error_length_sum_deg_px": 259177.97953246944,
+            "axis_line_count": 85,
+            "axis_line_length_px": 9525.968270615587
+          }
+        },
+        {
+          "basename": "J1NrQP4D3NDUd77gYT3heCUF_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 138,
+            "total_line_length_px": 23056.214756276644,
+            "orientation_error_deg": 5.014479365813787,
+            "orientation_error_deg_length_weighted": 4.068673802953205,
+            "axis_fraction": 0.7463768115942029,
+            "axis_fraction_length_weighted": 0.8405765867642935,
+            "orientation_error_sum_deg": 691.9981524823025,
+            "orientation_error_length_sum_deg_px": 93808.21697412588,
+            "axis_line_count": 103,
+            "axis_line_length_px": 19380.514303535558
+          }
+        },
+        {
+          "basename": "JeA6NUF20VVP9QLHfPWDU3a6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 149,
+            "total_line_length_px": 24175.247723649016,
+            "orientation_error_deg": 4.512821641111355,
+            "orientation_error_deg_length_weighted": 2.7809152577413196,
+            "axis_fraction": 0.7248322147651006,
+            "axis_fraction_length_weighted": 0.8665076449594824,
+            "orientation_error_sum_deg": 672.4104245255919,
+            "orientation_error_length_sum_deg_px": 67229.31525437166,
+            "axis_line_count": 108,
+            "axis_line_length_px": 20948.036971331196
+          }
+        },
+        {
+          "basename": "Lb6U5CHBA8LJ8VKJMDbJFTAW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 222,
+            "total_line_length_px": 34370.60572745334,
+            "orientation_error_deg": 34.614752532200775,
+            "orientation_error_deg_length_weighted": 35.545333861043,
+            "axis_fraction": 0.009009009009009009,
+            "axis_fraction_length_weighted": 0.003169168383402872,
+            "orientation_error_sum_deg": 7684.475062148573,
+            "orientation_error_length_sum_deg_px": 1221714.6555886054,
+            "axis_line_count": 2,
+            "axis_line_length_px": 108.92623698985078
+          }
+        },
+        {
+          "basename": "LTRY1CYPASr2U42gfSM1V03U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 58,
+            "total_line_length_px": 6238.012944343923,
+            "orientation_error_deg": 1.627813472735946,
+            "orientation_error_deg_length_weighted": 2.331901007195106,
+            "axis_fraction": 0.9655172413793104,
+            "axis_fraction_length_weighted": 0.89325936128103,
+            "orientation_error_sum_deg": 94.41318141868486,
+            "orientation_error_length_sum_deg_px": 14546.428667811702,
+            "axis_line_count": 56,
+            "axis_line_length_px": 5572.16345832745
+          }
+        },
+        {
+          "basename": "MV44X5erCfYfARD144ULQ5U2_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 385,
+            "total_line_length_px": 62272.33432255086,
+            "orientation_error_deg": 2.342912848805526,
+            "orientation_error_deg_length_weighted": 1.8005829492497805,
+            "axis_fraction": 0.9246753246753247,
+            "axis_fraction_length_weighted": 0.9640059437304874,
+            "orientation_error_sum_deg": 902.0214467901275,
+            "orientation_error_length_sum_deg_px": 112126.50339116696,
+            "axis_line_count": 356,
+            "axis_line_length_px": 60030.90041691106
+          }
+        },
+        {
+          "basename": "Q8T9P9heRtSUMVKryL1K95MC_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 66,
+            "total_line_length_px": 9827.688737691205,
+            "orientation_error_deg": 11.029094572990795,
+            "orientation_error_deg_length_weighted": 8.65718890563186,
+            "axis_fraction": 0.5454545454545454,
+            "axis_fraction_length_weighted": 0.6775878810032437,
+            "orientation_error_sum_deg": 727.9202418173925,
+            "orientation_error_length_sum_deg_px": 85080.15790794349,
+            "axis_line_count": 36,
+            "axis_line_length_px": 6659.122786931627
+          }
+        },
+        {
+          "basename": "QE9bhdPfA792B4LRQCLQD3eA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 189,
+            "total_line_length_px": 29272.97611516116,
+            "orientation_error_deg": 4.603570223750939,
+            "orientation_error_deg_length_weighted": 2.796715008450375,
+            "axis_fraction": 0.8042328042328042,
+            "axis_fraction_length_weighted": 0.90818687598432,
+            "orientation_error_sum_deg": 870.0747722889275,
+            "orientation_error_length_sum_deg_px": 81868.17164328057,
+            "axis_line_count": 152,
+            "axis_line_length_px": 26585.33272879183
+          }
+        },
+        {
+          "basename": "QX2h0dfKatbN2UJY2QPX3W4A_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 92,
+            "total_line_length_px": 13624.440475771084,
+            "orientation_error_deg": 20.350942544048674,
+            "orientation_error_deg_length_weighted": 16.172760598644572,
+            "axis_fraction": 0.043478260869565216,
+            "axis_fraction_length_weighted": 0.08067296357392369,
+            "orientation_error_sum_deg": 1872.286714052478,
+            "orientation_error_length_sum_deg_px": 220344.81410512887,
+            "axis_line_count": 4,
+            "axis_line_length_px": 1099.123990216972
+          }
+        },
+        {
+          "basename": "R3T2WaefFEa04gERKe5fYHMU_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 80,
+            "total_line_length_px": 11692.612918489129,
+            "orientation_error_deg": 7.854083443346269,
+            "orientation_error_deg_length_weighted": 5.742219389216289,
+            "axis_fraction": 0.3875,
+            "axis_fraction_length_weighted": 0.5394186433536888,
+            "orientation_error_sum_deg": 628.3266754677015,
+            "orientation_error_length_sum_deg_px": 67141.54861114913,
+            "axis_line_count": 31,
+            "axis_line_length_px": 6307.213397751222
+          }
+        },
+        {
+          "basename": "typical",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/typical.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/typical.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 130,
+            "total_line_length_px": 12945.234705111421,
+            "orientation_error_deg": 10.016706050133125,
+            "orientation_error_deg_length_weighted": 9.509028731219706,
+            "axis_fraction": 0.5153846153846153,
+            "axis_fraction_length_weighted": 0.5828454327079122,
+            "orientation_error_sum_deg": 1302.1717865173064,
+            "orientation_error_length_sum_deg_px": 123096.60874328697,
+            "axis_line_count": 67,
+            "axis_line_length_px": 7545.070923206148
+          }
+        }
+      ],
+      "unpaired_candidate_images": []
+    },
+    "target_first": {
+      "directory": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999",
+      "valid_mask_directory": null,
+      "summary": {
+        "indexed_images": 40,
+        "paired_images": 40,
+        "evaluated_images": 40,
+        "missing_images": 0,
+        "missing_masks": 0,
+        "no_line_images": 0,
+        "total_line_count": 8476,
+        "total_line_length_px": 1044705.8314234046,
+        "pooled_orientation_error_deg": 3.2254809674122744,
+        "pooled_orientation_error_deg_length_weighted": 2.1961201306047737,
+        "pooled_axis_fraction": 0.8434403020292591,
+        "pooled_axis_fraction_length_weighted": 0.9032854533242853,
+        "image_mean_orientation_error_deg": 4.1319954883182985,
+        "image_median_orientation_error_deg": 3.0928483323053895,
+        "image_mean_orientation_error_deg_length_weighted": 3.033661132109863,
+        "image_median_orientation_error_deg_length_weighted": 2.1726827646383233,
+        "image_mean_axis_fraction": 0.8240987318814647,
+        "image_mean_axis_fraction_length_weighted": 0.8753729517858284
+      },
+      "per_image": [
+        {
+          "basename": "16ELhPMMHYV40g57W0XeMfH7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 321,
+            "total_line_length_px": 27823.5932007975,
+            "orientation_error_deg": 10.547610426280919,
+            "orientation_error_deg_length_weighted": 8.287715365806267,
+            "axis_fraction": 0.46105919003115264,
+            "axis_fraction_length_weighted": 0.5756685599187961,
+            "orientation_error_sum_deg": 3385.7829468361747,
+            "orientation_error_length_sum_deg_px": 230594.02090219222,
+            "axis_line_count": 148,
+            "axis_line_length_px": 16017.1678296695
+          }
+        },
+        {
+          "basename": "1ba3rBPrWDbBh7dTQ9DT1TMS_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 164,
+            "total_line_length_px": 27635.768628269754,
+            "orientation_error_deg": 1.2894349692628806,
+            "orientation_error_deg_length_weighted": 0.8164139085499102,
+            "axis_fraction": 0.9512195121951219,
+            "axis_fraction_length_weighted": 0.9667433800140556,
+            "orientation_error_sum_deg": 211.4673349591124,
+            "orientation_error_length_sum_deg_px": 22562.225881586703,
+            "axis_line_count": 156,
+            "axis_line_length_px": 26716.696372979903
+          }
+        },
+        {
+          "basename": "1DbDh15f1F1fQ05dRFAE35HR_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 329,
+            "total_line_length_px": 36999.90391603206,
+            "orientation_error_deg": 0.5034889366696059,
+            "orientation_error_deg_length_weighted": 0.3499105027372624,
+            "axis_fraction": 0.9787234042553191,
+            "axis_fraction_length_weighted": 0.987097977732263,
+            "orientation_error_sum_deg": 165.64786016430034,
+            "orientation_error_length_sum_deg_px": 12946.654980489182,
+            "axis_line_count": 322,
+            "axis_line_length_px": 36522.53033180329
+          }
+        },
+        {
+          "basename": "1EV00KT9DRaVUUJL2bAgSEL8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 810,
+            "total_line_length_px": 56243.29560484014,
+            "orientation_error_deg": 0.3239923249846515,
+            "orientation_error_deg_length_weighted": 0.2809009238700844,
+            "axis_fraction": 0.9888888888888889,
+            "axis_fraction_length_weighted": 0.9906945859022666,
+            "orientation_error_sum_deg": 262.43378323756775,
+            "orientation_error_length_sum_deg_px": 15798.793696897852,
+            "axis_line_count": 801,
+            "axis_line_length_px": 55719.92844901587
+          }
+        },
+        {
+          "basename": "1NbeXFV2fT4afe3UbJ32PtfK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 147,
+            "total_line_length_px": 20647.36902140944,
+            "orientation_error_deg": 5.026399382535123,
+            "orientation_error_deg_length_weighted": 2.8236656752011733,
+            "axis_fraction": 0.7959183673469388,
+            "axis_fraction_length_weighted": 0.8918672183491344,
+            "orientation_error_sum_deg": 738.8807092326631,
+            "orientation_error_length_sum_deg_px": 58301.267188965874,
+            "axis_line_count": 117,
+            "axis_line_length_px": 18414.711575352525
+          }
+        },
+        {
+          "basename": "2CdRS1fhH1LTSDRy5AYD43FH_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 311,
+            "total_line_length_px": 27526.76837343366,
+            "orientation_error_deg": 1.6614674645944552,
+            "orientation_error_deg_length_weighted": 1.1675132988229628,
+            "axis_fraction": 0.9742765273311897,
+            "axis_fraction_length_weighted": 0.9794577935744048,
+            "orientation_error_sum_deg": 516.7163814888755,
+            "orientation_error_length_sum_deg_px": 32137.86814960314,
+            "axis_line_count": 303,
+            "axis_line_length_px": 26961.30781527704
+          }
+        },
+        {
+          "basename": "2da67JQUMQb2rtWbSKByAF0a_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 1814,
+            "total_line_length_px": 166408.63012312964,
+            "orientation_error_deg": 2.419002376436755,
+            "orientation_error_deg_length_weighted": 2.206115402433096,
+            "axis_fraction": 0.856670341786108,
+            "axis_fraction_length_weighted": 0.8852694088166737,
+            "orientation_error_sum_deg": 4388.070310856274,
+            "orientation_error_length_sum_deg_px": 367116.6420124283,
+            "axis_line_count": 1554,
+            "axis_line_length_px": 147316.4696110955
+          }
+        },
+        {
+          "basename": "2tbCQ7d10febagQWYMT6EhKV_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 211,
+            "total_line_length_px": 29004.592678929264,
+            "orientation_error_deg": 5.928497786877818,
+            "orientation_error_deg_length_weighted": 3.822137361140502,
+            "axis_fraction": 0.8199052132701422,
+            "axis_fraction_length_weighted": 0.8939186001818413,
+            "orientation_error_sum_deg": 1250.9130330312196,
+            "orientation_error_length_sum_deg_px": 110859.53732279783,
+            "axis_line_count": 173,
+            "axis_line_length_px": 25927.74488639293
+          }
+        },
+        {
+          "basename": "3r3XBUad0SDKJU9LM0e92dh1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 94,
+            "total_line_length_px": 13319.79564059461,
+            "orientation_error_deg": 3.014120562505955,
+            "orientation_error_deg_length_weighted": 2.1392501268435504,
+            "axis_fraction": 0.7021276595744681,
+            "axis_fraction_length_weighted": 0.8426361866746482,
+            "orientation_error_sum_deg": 283.32733287555976,
+            "orientation_error_length_sum_deg_px": 28494.37451367219,
+            "axis_line_count": 66,
+            "axis_line_length_px": 11223.741805876245
+          }
+        },
+        {
+          "basename": "4Q3D5102RC670bSYM01h5EF4_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 158,
+            "total_line_length_px": 20639.81347177559,
+            "orientation_error_deg": 4.2859560653270234,
+            "orientation_error_deg_length_weighted": 3.816182651686885,
+            "axis_fraction": 0.879746835443038,
+            "axis_fraction_length_weighted": 0.9122862911093605,
+            "orientation_error_sum_deg": 677.1810583216698,
+            "orientation_error_length_sum_deg_px": 78765.29810504326,
+            "axis_line_count": 139,
+            "axis_line_length_px": 18829.418881355166
+          }
+        },
+        {
+          "basename": "5HKR7V9gbBHY29fMWSaX32Q8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 459,
+            "total_line_length_px": 41052.29799996094,
+            "orientation_error_deg": 5.563339333867399,
+            "orientation_error_deg_length_weighted": 5.1070030010168885,
+            "axis_fraction": 0.4662309368191721,
+            "axis_fraction_length_weighted": 0.5204145589028663,
+            "orientation_error_sum_deg": 2553.572754245136,
+            "orientation_error_length_sum_deg_px": 209654.2090844401,
+            "axis_line_count": 214,
+            "axis_line_length_px": 21364.21355559869
+          }
+        },
+        {
+          "basename": "5yB2tFd1PV5Fa2SLLWrXRg7U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 96,
+            "total_line_length_px": 18893.606583723587,
+            "orientation_error_deg": 1.9573079968274893,
+            "orientation_error_deg_length_weighted": 0.9458385157462701,
+            "axis_fraction": 0.9583333333333334,
+            "axis_fraction_length_weighted": 0.9807232491267504,
+            "orientation_error_sum_deg": 187.90156769543898,
+            "orientation_error_length_sum_deg_px": 17870.300808243075,
+            "axis_line_count": 92,
+            "axis_line_length_px": 18529.39923651196
+          }
+        },
+        {
+          "basename": "6DJNJ4FbDa0JHN8R5f1XEMQK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 71,
+            "total_line_length_px": 10588.154587189892,
+            "orientation_error_deg": 8.099847980495353,
+            "orientation_error_deg_length_weighted": 4.4907316580176895,
+            "axis_fraction": 0.6619718309859155,
+            "axis_fraction_length_weighted": 0.8233783538371109,
+            "orientation_error_sum_deg": 575.08920661517,
+            "orientation_error_length_sum_deg_px": 47548.56100467887,
+            "axis_line_count": 47,
+            "axis_line_length_px": 8718.057294173268
+          }
+        },
+        {
+          "basename": "7e8eSH1YD4Qa4gP2RUCab6Q6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 176,
+            "total_line_length_px": 19328.861455689454,
+            "orientation_error_deg": 8.216072378253157,
+            "orientation_error_deg_length_weighted": 4.566440794410948,
+            "axis_fraction": 0.6931818181818182,
+            "axis_fraction_length_weighted": 0.8627242517706005,
+            "orientation_error_sum_deg": 1446.0287385725555,
+            "orientation_error_length_sum_deg_px": 88264.10146077769,
+            "axis_line_count": 122,
+            "axis_line_length_px": 16675.477536937284
+          }
+        },
+        {
+          "basename": "8DdQ3A1H4UQRQadKDMTtWCBJ_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 86,
+            "total_line_length_px": 12130.565372995754,
+            "orientation_error_deg": 6.420553047398059,
+            "orientation_error_deg_length_weighted": 3.9863246780509396,
+            "axis_fraction": 0.813953488372093,
+            "axis_fraction_length_weighted": 0.8913739596569353,
+            "orientation_error_sum_deg": 552.167562076233,
+            "orientation_error_length_sum_deg_px": 48356.372105083174,
+            "axis_line_count": 70,
+            "axis_line_length_px": 10812.870089404534
+          }
+        },
+        {
+          "basename": "a2b5rWhRUYXSJP19CdFUb1bE_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 39,
+            "total_line_length_px": 4311.442764177651,
+            "orientation_error_deg": 5.592288794741743,
+            "orientation_error_deg_length_weighted": 4.7233451033525276,
+            "axis_fraction": 0.8205128205128205,
+            "axis_fraction_length_weighted": 0.8626268561257174,
+            "orientation_error_sum_deg": 218.09926299492795,
+            "orientation_error_length_sum_deg_px": 20364.432068563194,
+            "axis_line_count": 32,
+            "axis_line_length_px": 3719.16631702854
+          }
+        },
+        {
+          "basename": "A7NMCUty90b1aUJMF9FfThBY_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 423,
+            "total_line_length_px": 55212.33799888707,
+            "orientation_error_deg": 0.8551445767288787,
+            "orientation_error_deg_length_weighted": 0.5416569961196642,
+            "axis_fraction": 0.9763593380614657,
+            "axis_fraction_length_weighted": 0.987900613137032,
+            "orientation_error_sum_deg": 361.72615595631567,
+            "orientation_error_length_sum_deg_px": 29906.149149220768,
+            "axis_line_count": 413,
+            "axis_line_length_px": 54544.302561829594
+          }
+        },
+        {
+          "basename": "aaEHAY6hC2B5f5YHJWfrTy0P_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 87,
+            "total_line_length_px": 27906.483575349885,
+            "orientation_error_deg": 0.5241526618232113,
+            "orientation_error_deg_length_weighted": 0.16898340518465815,
+            "axis_fraction": 0.9655172413793104,
+            "axis_fraction_length_weighted": 0.9919601288588706,
+            "orientation_error_sum_deg": 45.60128157861938,
+            "orientation_error_length_sum_deg_px": 4715.732621292357,
+            "axis_line_count": 84,
+            "axis_line_length_px": 27682.11904340203
+          }
+        },
+        {
+          "basename": "AC3FKYgPESP4V1EKBQSeQHH1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 48,
+            "total_line_length_px": 6423.884733457818,
+            "orientation_error_deg": 8.191583716472218,
+            "orientation_error_deg_length_weighted": 8.386926344415281,
+            "axis_fraction": 0.75,
+            "axis_fraction_length_weighted": 0.7499048763508468,
+            "orientation_error_sum_deg": 393.1960183906665,
+            "orientation_error_length_sum_deg_px": 53876.64810452451,
+            "axis_line_count": 36,
+            "axis_line_length_px": 4817.302486735777
+          }
+        },
+        {
+          "basename": "b6bQDdag3DNMKFe2aVCDQre7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 61,
+            "total_line_length_px": 3753.0272157403656,
+            "orientation_error_deg": 16.599669474940224,
+            "orientation_error_deg_length_weighted": 16.47936718343063,
+            "axis_fraction": 0.26229508196721313,
+            "axis_fraction_length_weighted": 0.24639398045821673,
+            "orientation_error_sum_deg": 1012.5798379713538,
+            "orientation_error_length_sum_deg_px": 61847.513537593804,
+            "axis_line_count": 16,
+            "axis_line_length_px": 924.7233144542872
+          }
+        },
+        {
+          "basename": "CJDh0JQD4RbB84W5EfMDYrrB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 97,
+            "total_line_length_px": 21914.270576394658,
+            "orientation_error_deg": 2.5112829685244282,
+            "orientation_error_deg_length_weighted": 1.0795280958279025,
+            "axis_fraction": 0.8865979381443299,
+            "axis_fraction_length_weighted": 0.9565537005628235,
+            "orientation_error_sum_deg": 243.59444794686954,
+            "orientation_error_length_sum_deg_px": 23657.070786792756,
+            "axis_line_count": 86,
+            "axis_line_length_px": 20962.17661498531
+          }
+        },
+        {
+          "basename": "dH0hWBg4VP9NL9TY0NbgCL1R_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 108,
+            "total_line_length_px": 22510.124412189467,
+            "orientation_error_deg": 5.5203771477836545,
+            "orientation_error_deg_length_weighted": 2.3276427086058655,
+            "axis_fraction": 0.7962962962962963,
+            "axis_fraction_length_weighted": 0.9165411426565262,
+            "orientation_error_sum_deg": 596.2007319606347,
+            "orientation_error_length_sum_deg_px": 52395.52695784371,
+            "axis_line_count": 86,
+            "axis_line_length_px": 20631.4551500887
+          }
+        },
+        {
+          "basename": "dNV2hVyY0eCTPXXEHDDWNC2T_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 242,
+            "total_line_length_px": 34092.68186063997,
+            "orientation_error_deg": 1.3556175274858222,
+            "orientation_error_deg_length_weighted": 1.024274708591498,
+            "axis_fraction": 0.9834710743801653,
+            "axis_fraction_length_weighted": 0.9916758279964545,
+            "orientation_error_sum_deg": 328.059441651569,
+            "orientation_error_length_sum_deg_px": 34920.27177790966,
+            "axis_line_count": 238,
+            "axis_line_length_px": 33808.888512769845
+          }
+        },
+        {
+          "basename": "DQH8La9PTDAPQh75DP3C5UKe_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 150,
+            "total_line_length_px": 27894.71321068835,
+            "orientation_error_deg": 1.3417202984176748,
+            "orientation_error_deg_length_weighted": 0.7836681029011424,
+            "axis_fraction": 0.94,
+            "axis_fraction_length_weighted": 0.9706450349383805,
+            "orientation_error_sum_deg": 201.25804476265122,
+            "orientation_error_length_sum_deg_px": 21860.196982791575,
+            "axis_line_count": 141,
+            "axis_line_length_px": 27075.8648789847
+          }
+        },
+        {
+          "basename": "DQR8FKBY5d6edYQdBeCWb0aB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 23,
+            "total_line_length_px": 1846.8183751546756,
+            "orientation_error_deg": 5.8939673507068955,
+            "orientation_error_deg_length_weighted": 5.924499783674043,
+            "axis_fraction": 0.6521739130434783,
+            "axis_fraction_length_weighted": 0.6548350672266685,
+            "orientation_error_sum_deg": 135.5612490662586,
+            "orientation_error_length_sum_deg_px": 10941.475064089123,
+            "axis_line_count": 15,
+            "axis_line_length_px": 1209.3614348498586
+          }
+        },
+        {
+          "basename": "ESM2QNNQadP4BR4AFah12a20_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 150,
+            "total_line_length_px": 20918.866193656002,
+            "orientation_error_deg": 8.64340588288362,
+            "orientation_error_deg_length_weighted": 5.615321882891897,
+            "axis_fraction": 0.6266666666666667,
+            "axis_fraction_length_weighted": 0.7674142603606532,
+            "orientation_error_sum_deg": 1296.510882432543,
+            "orientation_error_length_sum_deg_px": 117466.16710252408,
+            "axis_line_count": 94,
+            "axis_line_length_px": 16053.436227587992
+          }
+        },
+        {
+          "basename": "f24X1MaM3Sb25D52SAe9XQg3_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 141,
+            "total_line_length_px": 23773.297090508524,
+            "orientation_error_deg": 0.6323700890372161,
+            "orientation_error_deg_length_weighted": 0.45426884945401785,
+            "axis_fraction": 0.9858156028368794,
+            "axis_fraction_length_weighted": 0.994554039557575,
+            "orientation_error_sum_deg": 89.16418255424747,
+            "orientation_error_length_sum_deg_px": 10799.468317033858,
+            "axis_line_count": 139,
+            "axis_line_length_px": 23643.828654967598
+          }
+        },
+        {
+          "basename": "FTEKCRtVAY93UrTVYf3F5yhW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 69,
+            "total_line_length_px": 10704.312114743958,
+            "orientation_error_deg": 2.632878277477158,
+            "orientation_error_deg_length_weighted": 1.9182286800092305,
+            "axis_fraction": 0.9130434782608695,
+            "axis_fraction_length_weighted": 0.9471451475925377,
+            "orientation_error_sum_deg": 181.6686011459239,
+            "orientation_error_length_sum_deg_px": 20533.318498272118,
+            "axis_line_count": 63,
+            "axis_line_length_px": 10138.537277795755
+          }
+        },
+        {
+          "basename": "g5Q9W9JUHba1LBBPa6CAUHRa_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 94,
+            "total_line_length_px": 9697.890429020998,
+            "orientation_error_deg": 3.751876536127294,
+            "orientation_error_deg_length_weighted": 2.7892888581078656,
+            "axis_fraction": 0.8191489361702128,
+            "axis_fraction_length_weighted": 0.8739833695183719,
+            "orientation_error_sum_deg": 352.67639439596564,
+            "orientation_error_length_sum_deg_px": 27050.21772081918,
+            "axis_line_count": 77,
+            "axis_line_length_px": 8475.79495437574
+          }
+        },
+        {
+          "basename": "gYVt22gMNyL0SLR9X7fJdWaA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 156,
+            "total_line_length_px": 21043.569711640335,
+            "orientation_error_deg": 5.022884486893451,
+            "orientation_error_deg_length_weighted": 3.3170464678159703,
+            "axis_fraction": 0.7756410256410257,
+            "axis_fraction_length_weighted": 0.8648900377385008,
+            "orientation_error_sum_deg": 783.5699799553784,
+            "orientation_error_length_sum_deg_px": 69802.49858223571,
+            "axis_line_count": 121,
+            "axis_line_length_px": 18200.373802053382
+          }
+        },
+        {
+          "basename": "J1NrQP4D3NDUd77gYT3heCUF_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 102,
+            "total_line_length_px": 22658.719539824146,
+            "orientation_error_deg": 1.3290504435041464,
+            "orientation_error_deg_length_weighted": 0.8030877887505797,
+            "axis_fraction": 0.9215686274509803,
+            "axis_fraction_length_weighted": 0.9553232886133468,
+            "orientation_error_sum_deg": 135.56314523742293,
+            "orientation_error_length_sum_deg_px": 18196.940971156928,
+            "axis_line_count": 94,
+            "axis_line_length_px": 21646.402466552303
+          }
+        },
+        {
+          "basename": "JeA6NUF20VVP9QLHfPWDU3a6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 131,
+            "total_line_length_px": 25042.442802175276,
+            "orientation_error_deg": 1.9474518935925158,
+            "orientation_error_deg_length_weighted": 0.8417518755680923,
+            "axis_fraction": 0.9312977099236641,
+            "axis_fraction_length_weighted": 0.9730002928510336,
+            "orientation_error_sum_deg": 255.11619806061958,
+            "orientation_error_length_sum_deg_px": 21079.52319753771,
+            "axis_line_count": 122,
+            "axis_line_length_px": 24366.304180221803
+          }
+        },
+        {
+          "basename": "Lb6U5CHBA8LJ8VKJMDbJFTAW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 203,
+            "total_line_length_px": 26202.40784224403,
+            "orientation_error_deg": 5.199937425059157,
+            "orientation_error_deg_length_weighted": 3.8333779108540487,
+            "axis_fraction": 0.812807881773399,
+            "axis_fraction_length_weighted": 0.8899100446256493,
+            "orientation_error_sum_deg": 1055.5872972870088,
+            "orientation_error_length_sum_deg_px": 100443.73143364716,
+            "axis_line_count": 165,
+            "axis_line_length_px": 23317.785932190847
+          }
+        },
+        {
+          "basename": "LTRY1CYPASr2U42gfSM1V03U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 50,
+            "total_line_length_px": 5898.493859604135,
+            "orientation_error_deg": 0.6606775689146999,
+            "orientation_error_deg_length_weighted": 1.3732364391149259,
+            "axis_fraction": 0.96,
+            "axis_fraction_length_weighted": 0.8718606632040111,
+            "orientation_error_sum_deg": 33.03387844573499,
+            "orientation_error_length_sum_deg_px": 8100.026703904037,
+            "axis_line_count": 48,
+            "axis_line_length_px": 5142.664768339248
+          }
+        },
+        {
+          "basename": "MV44X5erCfYfARD144ULQ5U2_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 294,
+            "total_line_length_px": 63065.630622332195,
+            "orientation_error_deg": 0.8542438375511369,
+            "orientation_error_deg_length_weighted": 0.4417743791878959,
+            "axis_fraction": 0.9863945578231292,
+            "axis_fraction_length_weighted": 0.9953261288386201,
+            "orientation_error_sum_deg": 251.14768824003423,
+            "orientation_error_length_sum_deg_px": 27860.779816273964,
+            "axis_line_count": 290,
+            "axis_line_length_px": 62770.869990092244
+          }
+        },
+        {
+          "basename": "Q8T9P9heRtSUMVKryL1K95MC_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 46,
+            "total_line_length_px": 8727.893493167881,
+            "orientation_error_deg": 8.374346499984455,
+            "orientation_error_deg_length_weighted": 5.374355884416042,
+            "axis_fraction": 0.782608695652174,
+            "axis_fraction_length_weighted": 0.8688007692476228,
+            "orientation_error_sum_deg": 385.2199389992849,
+            "orientation_error_length_sum_deg_px": 46906.80575356329,
+            "axis_line_count": 36,
+            "axis_line_length_px": 7582.800580775577
+          }
+        },
+        {
+          "basename": "QE9bhdPfA792B4LRQCLQD3eA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 164,
+            "total_line_length_px": 29399.968176120998,
+            "orientation_error_deg": 3.171576102104824,
+            "orientation_error_deg_length_weighted": 1.2032245549701883,
+            "axis_fraction": 0.8902439024390244,
+            "axis_fraction_length_weighted": 0.9625482582908227,
+            "orientation_error_sum_deg": 520.1384807451911,
+            "orientation_error_length_sum_deg_px": 35374.763624850886,
+            "axis_line_count": 146,
+            "axis_line_length_px": 28298.88816173088
+          }
+        },
+        {
+          "basename": "QX2h0dfKatbN2UJY2QPX3W4A_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 118,
+            "total_line_length_px": 17091.576771498698,
+            "orientation_error_deg": 1.7549003499015647,
+            "orientation_error_deg_length_weighted": 1.2482565029805581,
+            "axis_fraction": 0.9067796610169492,
+            "axis_fraction_length_weighted": 0.9627641426824307,
+            "orientation_error_sum_deg": 207.07824128838465,
+            "orientation_error_length_sum_deg_px": 21334.6718512147,
+            "axis_line_count": 107,
+            "axis_line_length_px": 16455.15725750289
+          }
+        },
+        {
+          "basename": "R3T2WaefFEa04gERKe5fYHMU_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 71,
+            "total_line_length_px": 9437.065266352249,
+            "orientation_error_deg": 1.9724160992321913,
+            "orientation_error_deg_length_weighted": 1.881021844536535,
+            "axis_fraction": 0.9436619718309859,
+            "axis_fraction_length_weighted": 0.9677415733879735,
+            "orientation_error_sum_deg": 140.04154304548558,
+            "orientation_error_length_sum_deg_px": 17751.325914325575,
+            "axis_line_count": 67,
+            "axis_line_length_px": 9132.64038902472
+          }
+        },
+        {
+          "basename": "typical",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/typical.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999/typical.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 162,
+            "total_line_length_px": 16934.896129063993,
+            "orientation_error_deg": 5.688908490527131,
+            "orientation_error_deg_length_weighted": 4.006167069299036,
+            "axis_fraction": 0.6728395061728395,
+            "axis_fraction_length_weighted": 0.7863644510447438,
+            "orientation_error_sum_deg": 921.6031754653952,
+            "orientation_error_length_sum_deg_px": 67844.02319425589,
+            "axis_line_count": 109,
+            "axis_line_length_px": 13317.000298031164
+          }
+        }
+      ],
+      "unpaired_candidate_images": []
+    },
+    "target_second": {
+      "directory": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd",
+      "valid_mask_directory": null,
+      "summary": {
+        "indexed_images": 40,
+        "paired_images": 40,
+        "evaluated_images": 40,
+        "missing_images": 0,
+        "missing_masks": 0,
+        "no_line_images": 0,
+        "total_line_count": 8124,
+        "total_line_length_px": 1049684.3492847206,
+        "pooled_orientation_error_deg": 2.744175517524801,
+        "pooled_orientation_error_deg_length_weighted": 1.7580546169884084,
+        "pooled_axis_fraction": 0.8790004923682915,
+        "pooled_axis_fraction_length_weighted": 0.9291425971840421,
+        "image_mean_orientation_error_deg": 3.627029848865127,
+        "image_median_orientation_error_deg": 2.3266950860335864,
+        "image_mean_orientation_error_deg_length_weighted": 2.4354246496684313,
+        "image_median_orientation_error_deg_length_weighted": 1.8186676389992247,
+        "image_mean_axis_fraction": 0.8527237749592729,
+        "image_mean_axis_fraction_length_weighted": 0.9050753163999066
+      },
+      "per_image": [
+        {
+          "basename": "16ELhPMMHYV40g57W0XeMfH7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 303,
+            "total_line_length_px": 26668.29542880686,
+            "orientation_error_deg": 10.668254469586547,
+            "orientation_error_deg_length_weighted": 8.231169333118102,
+            "axis_fraction": 0.45874587458745875,
+            "axis_fraction_length_weighted": 0.5751546512983753,
+            "orientation_error_sum_deg": 3232.4811042847236,
+            "orientation_error_length_sum_deg_px": 219511.2555001287,
+            "axis_line_count": 139,
+            "axis_line_length_px": 15338.394158077466
+          }
+        },
+        {
+          "basename": "1ba3rBPrWDbBh7dTQ9DT1TMS_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 159,
+            "total_line_length_px": 28360.595422546583,
+            "orientation_error_deg": 1.1733567183041689,
+            "orientation_error_deg_length_weighted": 0.762745750411133,
+            "axis_fraction": 0.9559748427672956,
+            "axis_fraction_length_weighted": 0.9690523199352286,
+            "orientation_error_sum_deg": 186.56371821036285,
+            "orientation_error_length_sum_deg_px": 21631.92363767684,
+            "axis_line_count": 152,
+            "axis_line_length_px": 27482.90078896319
+          }
+        },
+        {
+          "basename": "1DbDh15f1F1fQ05dRFAE35HR_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 335,
+            "total_line_length_px": 38796.669525240824,
+            "orientation_error_deg": 0.48517019745271334,
+            "orientation_error_deg_length_weighted": 0.3329936314772585,
+            "axis_fraction": 0.9850746268656716,
+            "axis_fraction_length_weighted": 0.9910542039954687,
+            "orientation_error_sum_deg": 162.53201614665898,
+            "orientation_error_length_sum_deg_px": 12919.04387443303,
+            "axis_line_count": 330,
+            "axis_line_length_px": 38449.602434012806
+          }
+        },
+        {
+          "basename": "1EV00KT9DRaVUUJL2bAgSEL8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 811,
+            "total_line_length_px": 56020.82448026033,
+            "orientation_error_deg": 0.30685539000885026,
+            "orientation_error_deg_length_weighted": 0.2636734378208924,
+            "axis_fraction": 0.9975339087546239,
+            "axis_fraction_length_weighted": 0.9982292149789599,
+            "orientation_error_sum_deg": 248.85972129717754,
+            "orientation_error_length_sum_deg_px": 14771.20338027105,
+            "axis_line_count": 809,
+            "axis_line_length_px": 55921.62364340437
+          }
+        },
+        {
+          "basename": "1NbeXFV2fT4afe3UbJ32PtfK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 141,
+            "total_line_length_px": 20506.037065537508,
+            "orientation_error_deg": 4.372597135064789,
+            "orientation_error_deg_length_weighted": 2.614432907607377,
+            "axis_fraction": 0.8226950354609929,
+            "axis_fraction_length_weighted": 0.9046559333653359,
+            "orientation_error_sum_deg": 616.5361960441353,
+            "orientation_error_length_sum_deg_px": 53611.658108757874,
+            "axis_line_count": 116,
+            "axis_line_length_px": 18550.90810114801
+          }
+        },
+        {
+          "basename": "2CdRS1fhH1LTSDRy5AYD43FH_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 310,
+            "total_line_length_px": 28956.324404179006,
+            "orientation_error_deg": 1.1848277284073139,
+            "orientation_error_deg_length_weighted": 0.7664448745924497,
+            "axis_fraction": 0.9774193548387097,
+            "axis_fraction_length_weighted": 0.9852864434616427,
+            "orientation_error_sum_deg": 367.2965958062673,
+            "orientation_error_length_sum_deg_px": 22193.42642661927,
+            "axis_line_count": 303,
+            "axis_line_length_px": 28530.273887915104
+          }
+        },
+        {
+          "basename": "2da67JQUMQb2rtWbSKByAF0a_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 1688,
+            "total_line_length_px": 155203.47438468633,
+            "orientation_error_deg": 2.295845789032302,
+            "orientation_error_deg_length_weighted": 2.1222939377536836,
+            "axis_fraction": 0.8696682464454977,
+            "axis_fraction_length_weighted": 0.8906237263301384,
+            "orientation_error_sum_deg": 3875.387691886526,
+            "orientation_error_length_sum_deg_px": 329387.39280492894,
+            "axis_line_count": 1468,
+            "axis_line_length_px": 138227.89669587353
+          }
+        },
+        {
+          "basename": "2tbCQ7d10febagQWYMT6EhKV_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 168,
+            "total_line_length_px": 31648.805283263577,
+            "orientation_error_deg": 6.117345165955986,
+            "orientation_error_deg_length_weighted": 2.3700929763177156,
+            "axis_fraction": 0.7916666666666666,
+            "axis_fraction_length_weighted": 0.9230937786933988,
+            "orientation_error_sum_deg": 1027.7139878806056,
+            "orientation_error_length_sum_deg_px": 75010.61111071002,
+            "axis_line_count": 133,
+            "axis_line_length_px": 29214.81526005938
+          }
+        },
+        {
+          "basename": "3r3XBUad0SDKJU9LM0e92dh1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 90,
+            "total_line_length_px": 13056.415378775035,
+            "orientation_error_deg": 2.5786231706586844,
+            "orientation_error_deg_length_weighted": 1.8748190970150709,
+            "axis_fraction": 0.7888888888888889,
+            "axis_fraction_length_weighted": 0.8845300186420233,
+            "orientation_error_sum_deg": 232.0760853592816,
+            "orientation_error_length_sum_deg_px": 24478.416890688695,
+            "axis_line_count": 71,
+            "axis_line_length_px": 11548.791338385881
+          }
+        },
+        {
+          "basename": "4Q3D5102RC670bSYM01h5EF4_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/4Q3D5102RC670bSYM01h5EF4_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 142,
+            "total_line_length_px": 20671.08264893625,
+            "orientation_error_deg": 2.3526400870278623,
+            "orientation_error_deg_length_weighted": 1.8054050828928385,
+            "axis_fraction": 0.9436619718309859,
+            "axis_fraction_length_weighted": 0.9678232037786256,
+            "orientation_error_sum_deg": 334.07489235795646,
+            "orientation_error_length_sum_deg_px": 37319.67768328747,
+            "axis_line_count": 134,
+            "axis_line_length_px": 20005.953434866242
+          }
+        },
+        {
+          "basename": "5HKR7V9gbBHY29fMWSaX32Q8_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 460,
+            "total_line_length_px": 42698.02882351457,
+            "orientation_error_deg": 2.4229824153221564,
+            "orientation_error_deg_length_weighted": 2.2020116642968537,
+            "axis_fraction": 0.8913043478260869,
+            "axis_fraction_length_weighted": 0.9181357582768718,
+            "orientation_error_sum_deg": 1114.5719110481919,
+            "orientation_error_length_sum_deg_px": 94021.55751186235,
+            "axis_line_count": 410,
+            "axis_line_length_px": 39202.587070805275
+          }
+        },
+        {
+          "basename": "5yB2tFd1PV5Fa2SLLWrXRg7U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 79,
+            "total_line_length_px": 18767.807893629415,
+            "orientation_error_deg": 1.7149155092647248,
+            "orientation_error_deg_length_weighted": 0.6566490919770261,
+            "axis_fraction": 0.9620253164556962,
+            "axis_fraction_length_weighted": 0.985767495469609,
+            "orientation_error_sum_deg": 135.47832523191326,
+            "orientation_error_length_sum_deg_px": 12323.864011751019,
+            "axis_line_count": 76,
+            "axis_line_length_px": 18500.694982757825
+          }
+        },
+        {
+          "basename": "6DJNJ4FbDa0JHN8R5f1XEMQK_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 76,
+            "total_line_length_px": 10903.12059471396,
+            "orientation_error_deg": 8.745963049024782,
+            "orientation_error_deg_length_weighted": 4.407992815036373,
+            "axis_fraction": 0.6578947368421053,
+            "axis_fraction_length_weighted": 0.8306004050427379,
+            "orientation_error_sum_deg": 664.6931917258835,
+            "orientation_error_length_sum_deg_px": 48060.877242974246,
+            "axis_line_count": 50,
+            "axis_line_length_px": 9056.136382199233
+          }
+        },
+        {
+          "basename": "7e8eSH1YD4Qa4gP2RUCab6Q6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 173,
+            "total_line_length_px": 19218.96186927741,
+            "orientation_error_deg": 7.255887722047997,
+            "orientation_error_deg_length_weighted": 4.06526297415791,
+            "axis_fraction": 0.7225433526011561,
+            "axis_fraction_length_weighted": 0.8770164790040972,
+            "orientation_error_sum_deg": 1255.2685759143035,
+            "orientation_error_length_sum_deg_px": 78130.13408892613,
+            "axis_line_count": 125,
+            "axis_line_length_px": 16855.346268707675
+          }
+        },
+        {
+          "basename": "8DdQ3A1H4UQRQadKDMTtWCBJ_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 86,
+            "total_line_length_px": 11797.905937675761,
+            "orientation_error_deg": 5.2797492943410615,
+            "orientation_error_deg_length_weighted": 3.4443384683738234,
+            "axis_fraction": 0.8255813953488372,
+            "axis_fraction_length_weighted": 0.8992086986581225,
+            "orientation_error_sum_deg": 454.0584393133313,
+            "orientation_error_length_sum_deg_px": 40635.98126739257,
+            "axis_line_count": 71,
+            "axis_line_length_px": 10608.779645108358
+          }
+        },
+        {
+          "basename": "a2b5rWhRUYXSJP19CdFUb1bE_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 46,
+            "total_line_length_px": 5246.221144338573,
+            "orientation_error_deg": 5.43065248623528,
+            "orientation_error_deg_length_weighted": 4.344617614123428,
+            "axis_fraction": 0.782608695652174,
+            "axis_fraction_length_weighted": 0.851883553864824,
+            "orientation_error_sum_deg": 249.81001436682288,
+            "orientation_error_length_sum_deg_px": 22792.824791280134,
+            "axis_line_count": 36,
+            "axis_line_length_px": 4469.169512799927
+          }
+        },
+        {
+          "basename": "A7NMCUty90b1aUJMF9FfThBY_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 390,
+            "total_line_length_px": 54991.642808047014,
+            "orientation_error_deg": 0.8162924788112867,
+            "orientation_error_deg_length_weighted": 0.5248390478800559,
+            "axis_fraction": 0.9769230769230769,
+            "axis_fraction_length_weighted": 0.9881263502187287,
+            "orientation_error_sum_deg": 318.3540667364018,
+            "orientation_error_length_sum_deg_px": 28861.761452735518,
+            "axis_line_count": 381,
+            "axis_line_length_px": 54338.6913004475
+          }
+        },
+        {
+          "basename": "aaEHAY6hC2B5f5YHJWfrTy0P_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 96,
+            "total_line_length_px": 28360.164848908043,
+            "orientation_error_deg": 0.5852403274848167,
+            "orientation_error_deg_length_weighted": 0.20771868577221586,
+            "axis_fraction": 0.9583333333333334,
+            "axis_fraction_length_weighted": 0.989339963324481,
+            "orientation_error_sum_deg": 56.1830714385424,
+            "orientation_error_length_sum_deg_px": 5890.936170698572,
+            "axis_line_count": 92,
+            "axis_line_length_px": 28057.84445149492
+          }
+        },
+        {
+          "basename": "AC3FKYgPESP4V1EKBQSeQHH1_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 48,
+            "total_line_length_px": 6366.394869489557,
+            "orientation_error_deg": 7.994865054425013,
+            "orientation_error_deg_length_weighted": 7.954465204582731,
+            "axis_fraction": 0.7708333333333334,
+            "axis_fraction_length_weighted": 0.7829767888153141,
+            "orientation_error_sum_deg": 383.7535226124006,
+            "orientation_error_length_sum_deg_px": 50641.2664679887,
+            "axis_line_count": 37,
+            "axis_line_length_px": 4984.739411243224
+          }
+        },
+        {
+          "basename": "b6bQDdag3DNMKFe2aVCDQre7_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 58,
+            "total_line_length_px": 3773.7030486904905,
+            "orientation_error_deg": 12.424412526527671,
+            "orientation_error_deg_length_weighted": 11.838923022846242,
+            "axis_fraction": 0.46551724137931033,
+            "axis_fraction_length_weighted": 0.486177546997809,
+            "orientation_error_sum_deg": 720.615926538605,
+            "orientation_error_length_sum_deg_px": 44676.5799045269,
+            "axis_line_count": 27,
+            "axis_line_length_px": 1834.689691310496
+          }
+        },
+        {
+          "basename": "CJDh0JQD4RbB84W5EfMDYrrB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 101,
+            "total_line_length_px": 22218.19491870431,
+            "orientation_error_deg": 2.1575488632339974,
+            "orientation_error_deg_length_weighted": 0.9493168305428971,
+            "axis_fraction": 0.9108910891089109,
+            "axis_fraction_length_weighted": 0.9618475624983107,
+            "orientation_error_sum_deg": 217.91243518663373,
+            "orientation_error_length_sum_deg_px": 21092.106380608675,
+            "axis_line_count": 92,
+            "axis_line_length_px": 21370.516625668093
+          }
+        },
+        {
+          "basename": "dH0hWBg4VP9NL9TY0NbgCL1R_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 99,
+            "total_line_length_px": 22878.322400383542,
+            "orientation_error_deg": 4.669503189750982,
+            "orientation_error_deg_length_weighted": 1.9525326230206186,
+            "axis_fraction": 0.8282828282828283,
+            "axis_fraction_length_weighted": 0.9297741153330839,
+            "orientation_error_sum_deg": 462.28081578534716,
+            "orientation_error_length_sum_deg_px": 44670.67084673225,
+            "axis_line_count": 82,
+            "axis_line_length_px": 21271.671970121683
+          }
+        },
+        {
+          "basename": "dNV2hVyY0eCTPXXEHDDWNC2T_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 232,
+            "total_line_length_px": 35224.057427365085,
+            "orientation_error_deg": 0.7058096008156456,
+            "orientation_error_deg_length_weighted": 0.42315253597450103,
+            "axis_fraction": 0.9913793103448276,
+            "axis_fraction_length_weighted": 0.9966329904441509,
+            "orientation_error_sum_deg": 163.74782738922977,
+            "orientation_error_length_sum_deg_px": 14905.149227700995,
+            "axis_line_count": 230,
+            "axis_line_length_px": 35105.45768941137
+          }
+        },
+        {
+          "basename": "DQH8La9PTDAPQh75DP3C5UKe_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 150,
+            "total_line_length_px": 27937.389270131152,
+            "orientation_error_deg": 1.3293679473856455,
+            "orientation_error_deg_length_weighted": 0.6700295772261793,
+            "axis_fraction": 0.9533333333333334,
+            "axis_fraction_length_weighted": 0.9799691255591001,
+            "orientation_error_sum_deg": 199.40519210784683,
+            "orientation_error_length_sum_deg_px": 18718.877121469173,
+            "axis_line_count": 143,
+            "axis_line_length_px": 27377.77893345461
+          }
+        },
+        {
+          "basename": "DQR8FKBY5d6edYQdBeCWb0aB_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 14,
+            "total_line_length_px": 1064.5087891518958,
+            "orientation_error_deg": 2.909195731599262,
+            "orientation_error_deg_length_weighted": 2.7650718521731186,
+            "axis_fraction": 0.8571428571428571,
+            "axis_fraction_length_weighted": 0.8526602670605827,
+            "orientation_error_sum_deg": 40.72874024238967,
+            "orientation_error_length_sum_deg_px": 2943.4432892747964,
+            "axis_line_count": 12,
+            "axis_line_length_px": 907.6643484465931
+          }
+        },
+        {
+          "basename": "ESM2QNNQadP4BR4AFah12a20_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/ESM2QNNQadP4BR4AFah12a20_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 139,
+            "total_line_length_px": 21308.24838148602,
+            "orientation_error_deg": 7.876062184182064,
+            "orientation_error_deg_length_weighted": 4.861705714428984,
+            "axis_fraction": 0.6187050359712231,
+            "axis_fraction_length_weighted": 0.7754942539220465,
+            "orientation_error_sum_deg": 1094.772643601307,
+            "orientation_error_length_sum_deg_px": 103594.43292074274,
+            "axis_line_count": 86,
+            "axis_line_length_px": 16524.424180986156
+          }
+        },
+        {
+          "basename": "f24X1MaM3Sb25D52SAe9XQg3_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 146,
+            "total_line_length_px": 24063.901564642525,
+            "orientation_error_deg": 0.6901155270856854,
+            "orientation_error_deg_length_weighted": 0.4397193932864594,
+            "axis_fraction": 0.9931506849315068,
+            "axis_fraction_length_weighted": 0.9979628751668055,
+            "orientation_error_sum_deg": 100.75686695451006,
+            "orientation_error_length_sum_deg_px": 10581.364196109693,
+            "axis_line_count": 145,
+            "axis_line_length_px": 24014.880393181644
+          }
+        },
+        {
+          "basename": "FTEKCRtVAY93UrTVYf3F5yhW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 72,
+            "total_line_length_px": 11164.67566151204,
+            "orientation_error_deg": 2.2310302311103176,
+            "orientation_error_deg_length_weighted": 1.4919666716058608,
+            "axis_fraction": 0.9305555555555556,
+            "axis_fraction_length_weighted": 0.9588447762391465,
+            "orientation_error_sum_deg": 160.63417663994286,
+            "orientation_error_length_sum_deg_px": 16657.32398626508,
+            "axis_line_count": 67,
+            "axis_line_length_px": 10705.190936445157
+          }
+        },
+        {
+          "basename": "g5Q9W9JUHba1LBBPa6CAUHRa_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 83,
+            "total_line_length_px": 9703.957333911545,
+            "orientation_error_deg": 2.9868012504184818,
+            "orientation_error_deg_length_weighted": 1.8319301951056106,
+            "axis_fraction": 0.8554216867469879,
+            "axis_fraction_length_weighted": 0.916460446564005,
+            "orientation_error_sum_deg": 247.904503784734,
+            "orientation_error_length_sum_deg_px": 17776.972452009097,
+            "axis_line_count": 71,
+            "axis_line_length_px": 8893.293071674627
+          }
+        },
+        {
+          "basename": "gYVt22gMNyL0SLR9X7fJdWaA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 140,
+            "total_line_length_px": 21367.03154713267,
+            "orientation_error_deg": 4.1896208546697125,
+            "orientation_error_deg_length_weighted": 2.565331048880032,
+            "axis_fraction": 0.7928571428571428,
+            "axis_fraction_length_weighted": 0.8841962264513217,
+            "orientation_error_sum_deg": 586.5469196537598,
+            "orientation_error_length_sum_deg_px": 54813.50945025858,
+            "axis_line_count": 111,
+            "axis_line_length_px": 18892.64866444105
+          }
+        },
+        {
+          "basename": "J1NrQP4D3NDUd77gYT3heCUF_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 93,
+            "total_line_length_px": 23588.49112061433,
+            "orientation_error_deg": 1.2392146261926191,
+            "orientation_error_deg_length_weighted": 0.7051779952160463,
+            "axis_fraction": 0.9139784946236559,
+            "axis_fraction_length_weighted": 0.9576939338979127,
+            "orientation_error_sum_deg": 115.24696023591358,
+            "orientation_error_length_sum_deg_px": 16634.08487860632,
+            "axis_line_count": 85,
+            "axis_line_length_px": 22590.55485601712
+          }
+        },
+        {
+          "basename": "JeA6NUF20VVP9QLHfPWDU3a6_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 133,
+            "total_line_length_px": 25883.86192679107,
+            "orientation_error_deg": 2.0376432222378567,
+            "orientation_error_deg_length_weighted": 0.8355785805459045,
+            "axis_fraction": 0.9323308270676691,
+            "axis_fraction_length_weighted": 0.9730887948525344,
+            "orientation_error_sum_deg": 271.0065485576349,
+            "orientation_error_length_sum_deg_px": 21628.000607834263,
+            "axis_line_count": 124,
+            "axis_line_length_px": 25187.29600847052
+          }
+        },
+        {
+          "basename": "Lb6U5CHBA8LJ8VKJMDbJFTAW_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 178,
+            "total_line_length_px": 26404.705800166703,
+            "orientation_error_deg": 3.876315919759564,
+            "orientation_error_deg_length_weighted": 2.1332937269987817,
+            "axis_fraction": 0.8033707865168539,
+            "axis_fraction_length_weighted": 0.9064404549354572,
+            "orientation_error_sum_deg": 689.9842337172024,
+            "orientation_error_length_sum_deg_px": 56328.99324674398,
+            "axis_line_count": 143,
+            "axis_line_length_px": 23934.29353794001
+          }
+        },
+        {
+          "basename": "LTRY1CYPASr2U42gfSM1V03U_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 49,
+            "total_line_length_px": 5479.665419969171,
+            "orientation_error_deg": 0.952985713113713,
+            "orientation_error_deg_length_weighted": 1.422263047645459,
+            "axis_fraction": 0.9183673469387755,
+            "axis_fraction_length_weighted": 0.8463601478913065,
+            "orientation_error_sum_deg": 46.69629994257194,
+            "orientation_error_length_sum_deg_px": 7793.525640282787,
+            "axis_line_count": 45,
+            "axis_line_length_px": 4637.770435239986
+          }
+        },
+        {
+          "basename": "MV44X5erCfYfARD144ULQ5U2_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/MV44X5erCfYfARD144ULQ5U2_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 274,
+            "total_line_length_px": 65132.10107819764,
+            "orientation_error_deg": 0.7580564958803919,
+            "orientation_error_deg_length_weighted": 0.33152452847824815,
+            "axis_fraction": 0.9890510948905109,
+            "axis_fraction_length_weighted": 0.9962731087122635,
+            "orientation_error_sum_deg": 207.70747987122738,
+            "orientation_error_length_sum_deg_px": 21592.88909874707,
+            "axis_line_count": 271,
+            "axis_line_length_px": 64889.36081813733
+          }
+        },
+        {
+          "basename": "Q8T9P9heRtSUMVKryL1K95MC_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 50,
+            "total_line_length_px": 9220.896804312442,
+            "orientation_error_deg": 12.012104600168659,
+            "orientation_error_deg_length_weighted": 6.550616985977189,
+            "axis_fraction": 0.7,
+            "axis_fraction_length_weighted": 0.8422735093378717,
+            "orientation_error_sum_deg": 600.605230008433,
+            "orientation_error_length_sum_deg_px": 60402.56323227187,
+            "axis_line_count": 35,
+            "axis_line_length_px": 7766.517110610607
+          }
+        },
+        {
+          "basename": "QE9bhdPfA792B4LRQCLQD3eA_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 160,
+            "total_line_length_px": 29505.819102193935,
+            "orientation_error_deg": 2.3007500850393106,
+            "orientation_error_deg_length_weighted": 0.9001628066042401,
+            "axis_fraction": 0.91875,
+            "axis_fraction_length_weighted": 0.9711005162168841,
+            "orientation_error_sum_deg": 368.12001360628966,
+            "orientation_error_length_sum_deg_px": 26560.04093418789,
+            "axis_line_count": 147,
+            "axis_line_length_px": 28653.11616154253
+          }
+        },
+        {
+          "basename": "QX2h0dfKatbN2UJY2QPX3W4A_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 122,
+            "total_line_length_px": 17851.78570615304,
+            "orientation_error_deg": 1.4352656380773627,
+            "orientation_error_deg_length_weighted": 1.1284660921570087,
+            "axis_fraction": 0.9590163934426229,
+            "axis_fraction_length_weighted": 0.9841992524778463,
+            "orientation_error_sum_deg": 175.10240784543825,
+            "orientation_error_length_sum_deg_px": 20145.134853846866,
+            "axis_line_count": 117,
+            "axis_line_length_px": 17569.714147390525
+          }
+        },
+        {
+          "basename": "R3T2WaefFEa04gERKe5fYHMU_a",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 66,
+            "total_line_length_px": 10063.097062212812,
+            "orientation_error_deg": 1.6390595573325413,
+            "orientation_error_deg_length_weighted": 1.3937974879537678,
+            "axis_fraction": 0.9545454545454546,
+            "axis_fraction_length_weighted": 0.9790856991707138,
+            "orientation_error_sum_deg": 108.17793078394773,
+            "orientation_error_length_sum_deg_px": 14025.919406347157,
+            "axis_line_count": 63,
+            "axis_line_length_px": 9852.634422979387
+          }
+        },
+        {
+          "basename": "typical",
+          "indexed_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/test_silver_bullet_imgs/typical/typical.jpg",
+          "candidate_image": "/juicefs-algorithm/lts_data/IPT/pengcheng_yu/Dataset/tmp/test_silver_bullet_imgs/typical_0709_v3v42v2_OriFtGrad10_AugFP32_bigrot_259999-2nd/typical.jpg",
+          "evaluation_valid_mask": null,
+          "status": "ok",
+          "metrics": {
+            "line_count": 164,
+            "total_line_length_px": 17611.162109171684,
+            "orientation_error_deg": 4.87826600156726,
+            "orientation_error_deg_length_weighted": 3.274458674863172,
+            "axis_fraction": 0.6829268292682927,
+            "axis_fraction_length_weighted": 0.7939180651131269,
+            "orientation_error_sum_deg": 800.0356242570307,
+            "orientation_error_length_sum_deg_px": 57667.02254279882,
+            "axis_line_count": 112,
+            "axis_line_length_px": 13981.819746107198
+          }
+        }
+      ],
+      "unpaired_candidate_images": []
+    }
+  }
+}

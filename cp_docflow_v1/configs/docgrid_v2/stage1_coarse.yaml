@@ -1,0 +1,26 @@
+extends: base_full.yaml
+
+loss:
+  velocity: 0.0
+  residual_endpoint: 0.0
+  map: 1.0
+  coarse_map: 1.0
+  sequence: 0.0
+  confidence: 0.10
+  warp: 0.05
+  ssim: 0.05
+  gradient: 0.05
+  hv: 0.0
+  straightness: 0.0
+  bending: 0.01
+  anti_fold: 0.02
+  jacobian_scale: 0.02
+  preserve: 0.0
+
+train:
+  stage: coarse
+  output_dir: runs/docgrid_v2/stage1_coarse/seed-1337
+  epochs: 20
+  batch_size: 2
+  eval_batch_size: 2
+  learning_rate: 0.0002

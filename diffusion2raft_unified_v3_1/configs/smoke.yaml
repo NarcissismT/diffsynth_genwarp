@@ -1,0 +1,95 @@
+seed: 7
+device: cuda
+
+data:
+  train_manifest: tmp/smoke_data/train.jsonl
+  val_manifest: tmp/smoke_data/val.jsonl
+  work_size: [128, 128]
+  batch_size: 1
+  num_workers: 0
+  guide_artifact_prob: 0.0
+  guide_dropout_prob: 0.0
+
+model:
+  feature_backend: lite
+  feature_channels: 32
+  feature_stride: 8
+  cnn_feature_channels: 24
+  refiner_hidden_channels: 32
+  refiner_iterations: 2
+  correlation_radius: 2
+  correlation_temperature: 0.10
+  match_temperature: 0.10
+  shared_qwen_projection: true
+  feature_dropout_prob: 0.0
+  raft_size: small
+  raft_pretrained: false
+  raft_checkpoint: null
+  prior_base_channels: 8
+  prior_max_displacement_ratio: 0.25
+  prior_control_stride: 8
+  max_residual_px: 16.0
+  guide_dropout_prob: 0.0
+
+train:
+  stage: prior
+  epochs: 1
+  lr_prior: 0.0002
+  lr_prior_joint: 0.00002
+  lr_unified: 0.0001
+  lr_raft: 0.00002
+  freeze_prior_epochs: 0
+  weight_decay: 0.0
+  grad_clip: 1.0
+  amp: false
+  amp_dtype: bfloat16
+  log_every: 1
+  save_every: 1
+  preview_every: 1
+  output_dir: runs/smoke
+  best_metric: line_epe
+  best_metric_mode: min
+  resume: null
+
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  prior_flow_unified: 0.25
+  reconstruction: 0.15
+  gradient: 0.10
+  structure_flow: 0.15
+  line_reconstruction: 0.05
+  flow_gradient: 0.05
+  curvature: 0.02
+  line_straightness: 0.10
+  structure_edge_threshold: 0.08
+  structure_edge_temperature: 0.04
+  structure_line_kernel: 15
+  structure_line_threshold: 0.20
+  structure_line_temperature: 0.05
+  bending: 0.002
+  anti_fold: 0.20
+  residual: 0.002
+  residual_flow: 0.25
+  qwen_match: 0.05
+  confidence: 0.02
+  residual_target_iterations: 6
+  max_residual_target: 16.0
+  max_residual_consistency: 1.0
+  gate_temperature_px: 1.0
+  min_jacobian: 0.05
+
+qwen:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  prompt: Rectify document geometry only and preserve all content.
+  num_inference_steps: 4
+  true_cfg_scale: 4.0
+  guidance_scale: 1.0
+  seed: 0
+  feature_num_inference_steps: 1
+  feature_type: hidden
+  feature_layers: [-1]
+  feature_dtype: float32
+  feature_quantization: none

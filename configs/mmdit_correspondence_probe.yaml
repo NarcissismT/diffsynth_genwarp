@@ -1,0 +1,142 @@
+experiment:
+  name: mmdit_correspondence_exp1
+  format_version: 1
+  hypothesis: target_query_to_warped_source_key
+  trainable_parameters: 0
+
+model:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  revision: null
+  pipeline_class: QwenImageEditPlusPipeline
+  dtype: bfloat16
+  local_files_only: false
+  cpu_offload: false
+  disable_progress: true
+
+inference:
+  height: 512
+  width: 512
+  num_inference_steps: 50
+  seed: 0
+  output_type: latent
+  # This matches the repository's existing frozen-feature path: no negative
+  # prompt, hence no extra unconditional transformer forward.
+  true_cfg_scale: 1.0
+  guidance_scale: 1.0
+  negative_prompt: null
+  max_sequence_length: 512
+  prompt: >-
+    Correct the geometric distortion of this document. Restore the page to a
+    flat, front-facing rectangle while preserving the exact text, layout, line
+    structure, and all visual content.
+
+data:
+  # The launcher replaces this with --manifest before freezing the run.
+  manifest: ${MMDIT_MANIFEST}
+  manifest_role: ${MMDIT_MANIFEST_ROLE:-validation}
+  resize_mode: stretch
+  work_size: [512, 512]
+  require_rectified_for_visualization: true
+
+split:
+  seed: 20260803
+  profile: full
+  full:
+    sanity: 8
+    discovery: 64
+    confirmation: 256
+  pilot:
+    sanity: 8
+    discovery: 32
+    confirmation: 128
+
+probe:
+  qk_normalization: post_qk_norm_then_global_token_l2
+  direction: target_query_to_warped_source_key
+  rope_states: [pre, post]
+  topk: [1, 5, 10]
+  radii: [0, 1, 2]
+  temperatures: [0.01, 0.03, 0.07, 0.10]
+  source_chunk_size: 2048
+  discovery:
+    steps: [0, 4, 9, 14, 19, 24, 29, 34, 39, 44, 49]
+    layers: all
+    target_tokens_per_sample: 128
+    batch_shuffle: false
+  sanity:
+    steps: [0, 24, 49]
+    layers: [17, 18, 20, 21]
+    target_tokens_per_sample: 128
+    batch_shuffle: true
+    determinism_repeat: true
+  confirmation:
+    target_tokens_per_sample: all
+    max_selected_configs: 6
+    batch_shuffle: true
+  seed_stability:
+    target_tokens_per_sample: all
+    batch_shuffle: false
+
+selection:
+  primary_metric: recall_at_10_r1
+  tie_breakers:
+    - hard_epe_median_px
+    - soft_epe_median_px
+    - hard_extreme_recall_at_10_r1
+    - false_identity_rate
+  max_configs: 6
+  min_depth_regions: 2
+  anchor_layers: [17, 18, 20, 21]
+
+seed_stability:
+  sample_count: 32
+  seeds: [0, 1, 2]
+  top_configs: 3
+
+visualization:
+  qualitative_samples: 24
+  target_points_per_sample: 32
+  cost_maps_per_sample: 1
+
+sanity_gate:
+  require_all_ranks: true
+  require_no_nan_inf: true
+  require_exact_step_count: 50
+  require_single_conditional_forward: true
+  require_complete_lattice: true
+  # Preregistered before observing results. Both conditions must hold for the
+  # best sanity configuration; otherwise positional bias has not been excluded.
+  require_shuffle_degradation: true
+  shuffle:
+    primary_metric: recall_at_10_r1
+    max_ratio_to_normal: 0.50
+    min_absolute_drop: 0.05
+
+decision_thresholds:
+  strong:
+    overall_recall_at_10_r1_min: 0.60
+    hard_extreme_recall_at_10_r1_min: 0.40
+    text_edge_recall_at_10_r1_min: 0.45
+    control_multiple_min: 5.0
+    soft_median_epe_reduction_vs_identity_min: 0.20
+    false_identity_rate_max: 0.30
+    seed_recall_std_max: 0.05
+  weak:
+    best_recall_at_10_r1_max: 0.30
+    hard_extreme_recall_at_10_r1_max: 0.30
+    large_displacement_recall_at_10_r1_max: 0.30
+    control_multiple_max: 2.0
+    epe_reduction_vs_identity_max: 0.0
+    post_rope_false_identity_rate_min: 0.50
+    seed_recall_std_min: 0.10
+
+output:
+  run_dir: runs/mmdit_correspondence_exp1
+  write_jsonl: true
+  write_parquet: true
+  save_raw_qk: false
+
+resources:
+  expected_gpus: 8
+  batch_size_per_gpu: 1
+  gpu_type: A800-80GB

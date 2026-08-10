@@ -1,0 +1,20 @@
+extends: base_full.yaml
+
+train:
+  stage: coord_fm
+  parent_checkpoint: ${DOCGRID_STAGE3_PARENT_CHECKPOINT:-runs/docgrid_v2/stage2_warr/seed-1337/best.pt}
+  gate_receipts:
+    gate1: ${DOCGRID_GATE1_RECEIPT:-runs/docgrid_v2/gates/gate1.json}
+    gate2: ${DOCGRID_GATE2_RECEIPT:-runs/docgrid_v2/gates/gate2.json}
+  output_dir: runs/docgrid_v2/stage3_coordinate_fm/seed-1337
+  epochs: 20
+  learning_rate: 0.0001
+  phase_schedule:
+    - name: coordinate_fm_warmup
+      profile: coord_fm
+      duration_fraction: 0.70
+      learning_rate: 0.0001
+    - name: coordinate_fm_joint_finetune
+      profile: coord_fm_joint
+      duration_fraction: 0.30
+      learning_rate: 0.00001

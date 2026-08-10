@@ -1,0 +1,6 @@
+[submodule "qwen_qk_waft"]
+	path = qwen_qk_waft
+	url = git@github.com:NarcissismT/qwen_qk_waft.git
+[submodule "third_party/DiffSynth-Studio"]
+	path = third_party/DiffSynth-Studio
+	url = https://github.com/modelscope/DiffSynth-Studio.git

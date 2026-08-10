@@ -1,0 +1,721 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Flow V4 推理脚本（Layer Probing 版）
+=====================================
+与 V3 的唯一区别：FlowHeadV3 → FlowHeadV4，并支持 --dit_target_layers 任意指定层。
+
+正确的两阶段推理流程（与 V3 完全一致）：
+  Stage 1 - Qwen 扩散完整推理（50步），同时在 target_layers 提取 Q/K 特征
+            → corrected_low（几何参考图）+ q_features, k_features
+  Stage 2 - FlowHeadV4(corrected_low, warped, q_feats, k_feats) → flow_low
+  Stage 3 - flow 上采样到原始高清分辨率
+  Stage 4 - 用高清 flow 对原始高清 warped 图做像素重采样 → 最终输出
+
+输出文件（每张输入图片生成 4 个）：
+  a_*.jpg  resize 后的 warped 图（推理输入）
+  b_*.jpg  扩散模型矫正结果（corrected_low，仅供参考，文字可能有变化）
+  c_*.jpg  FlowHead V4 warp 高清结果（最终输出，文字来自原图像素）
+  d_*.jpg  对比图（原始 | 扩散 | V4 warp）
+
+用法：
+  bash scripts/flow_v4_sample.sh
+  或
+  python qwen_image_flow_v4.py --input_dir /path/to/imgs --output_dir /path/to/out \
+      --ckpt_path /path/to/flow_head_v4_ckpts/exp_C/step-XXXXX.safetensors \
+      --dit_target_layers "35"
+"""
+
+import os
+import sys
+
+_sys_usr = [p for p in sys.path if p.startswith("/usr/") or p == ""]
+_sys_other = [p for p in sys.path if p not in set(_sys_usr)]
+sys.path = _sys_usr + _sys_other
+
+import torch
+import glob
+import argparse
+import random
+import csv
+import numpy as np
+from tqdm import tqdm
+from PIL import Image
+import torchvision
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_UPSTREAM = "/juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio"
+# 主项目根目录（flow_utils.py 在这里），无论从哪里调用都需要加
+_PROJECT_ROOT = "/juicefs-algorithm/workspace/IPT/zhuochu_yang/diffsynth_genwarp"
+sys.path.insert(0, _HERE)
+sys.path.insert(0, _PROJECT_ROOT)
+sys.path.insert(0, _UPSTREAM)
+
+import diffsynth
+from diffsynth.pipelines.qwen_image import QwenImagePipeline, ModelConfig
+from diffsynth import load_state_dict
+from diffsynth.trainers.utils import DiffusionTrainingModule
+
+from utils.flow_head_v4_layer_probe import FlowHeadV4LayerProbe
+from utils.flow_utils import upscale_flow, warp_image_with_flow
+from utils.flow_guidance import apply_backward_flow_guidance
+
+_MODEL_BASE = "/juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio/models/Qwen-Image-Edit"
+DIT_SHARDS = [
+    f"{_MODEL_BASE}/transformer/diffusion_pytorch_model-{i:05d}-of-00009.safetensors"
+    for i in range(1, 10)
+]
+TEXT_ENCODER_SHARDS = [
+    f"{_MODEL_BASE}/text_encoder/model-{i:05d}-of-00004.safetensors"
+    for i in range(1, 5)
+]
+VAE_PATH       = f"{_MODEL_BASE}/vae/diffusion_pytorch_model.safetensors"
+TOKENIZER_PATH = f"{_MODEL_BASE}/tokenizer"
+PROCESSOR_PATH = f"{_MODEL_BASE}/processor"
+
+
+# ---------------------------------------------------------------------------
+# 图像预处理
+# ---------------------------------------------------------------------------
+
+def preprocess_image(img: Image.Image, img_size: int, resize_mode: str,
+                     short_side_pixel: int = 2048):
+    width, height = img.size
+    if resize_mode == "crop":
+        short_side = min(width, height)
+        scale = short_side_pixel / short_side
+        new_h, new_w = round(height * scale), round(width * scale)
+        img = torchvision.transforms.functional.resize(
+            img, (new_h, new_w),
+            interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
+        return (torchvision.transforms.functional.center_crop(img, (img_size, img_size)),
+                img_size, img_size)
+    elif resize_mode == "stretch":
+        return img.resize((img_size, img_size), Image.LANCZOS), img_size, img_size
+    elif resize_mode == "scale_to_short_side":
+        short_side = min(width, height)
+        scale = img_size / short_side
+        new_h = int(height * scale) // 16 * 16
+        new_w = int(width  * scale) // 16 * 16
+        return (torchvision.transforms.functional.resize(
+            img, (new_h, new_w),
+            interpolation=torchvision.transforms.InterpolationMode.BILINEAR),
+            new_w, new_h)
+    else:
+        raise ValueError(f"未知的 resize_mode: {resize_mode}")
+
+
+def pil_to_tensor(img: Image.Image, device) -> torch.Tensor:
+    arr = np.array(img, dtype=np.float32) * (2.0 / 255.0) - 1.0
+    return torch.from_numpy(arr).permute(2, 0, 1).unsqueeze(0).to(device)
+
+
+def parse_layer_list(s: str) -> list:
+    return [int(x.strip()) for x in s.split(",") if x.strip()]
+
+
+def visualize_flow(flow: torch.Tensor, save_path_prefix: str):
+    """
+    保存 flow 的 6 张诊断图（diagnose.md Step 3）：
+      _flow_dx.png         dx 分量灰度图（带色阶）
+      _flow_dy.png         dy 分量灰度图
+      _flow_mag.png        flow magnitude (sqrt(dx²+dy²))
+      _flow_quiver.png     箭头图（每 16 px 采样）
+      _flow_jacobian.png   Jacobian determinant
+      _flow_fold.png       fold 区域（J ≤ 0）
+
+    flow: (1, 2, H, W) 像素单位
+    """
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+
+    flow_np = flow[0].detach().cpu().numpy()  # (2, H, W)
+    dx, dy = flow_np[0], flow_np[1]
+    H, W = dx.shape
+    mag = np.sqrt(dx ** 2 + dy ** 2)
+
+    # ---- dx ----
+    plt.figure(figsize=(6, 6))
+    plt.imshow(dx, cmap='RdBu_r', vmin=-np.abs(flow_np).max(), vmax=np.abs(flow_np).max())
+    plt.colorbar(label='dx (px)')
+    plt.title(f"dx: mean={dx.mean():+.2f}, std={dx.std():.2f}, "
+              f"min={dx.min():+.2f}, max={dx.max():+.2f}")
+    plt.savefig(save_path_prefix + "_flow_dx.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    # ---- dy ----
+    plt.figure(figsize=(6, 6))
+    plt.imshow(dy, cmap='RdBu_r', vmin=-np.abs(flow_np).max(), vmax=np.abs(flow_np).max())
+    plt.colorbar(label='dy (px)')
+    plt.title(f"dy: mean={dy.mean():+.2f}, std={dy.std():.2f}, "
+              f"min={dy.min():+.2f}, max={dy.max():+.2f}")
+    plt.savefig(save_path_prefix + "_flow_dy.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    # ---- magnitude ----
+    plt.figure(figsize=(6, 6))
+    plt.imshow(mag, cmap='viridis')
+    plt.colorbar(label='|flow| (px)')
+    plt.title(f"|flow|: mean={mag.mean():.2f}, max={mag.max():.2f}")
+    plt.savefig(save_path_prefix + "_flow_mag.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    # ---- quiver（箭头图）----
+    step = max(1, H // 32)
+    Y, X = np.mgrid[0:H:step, 0:W:step]
+    plt.figure(figsize=(6, 6))
+    plt.imshow(mag, cmap='gray', alpha=0.4)
+    plt.quiver(X, Y, dx[::step, ::step], -dy[::step, ::step],   # -dy 因为图像 y 轴向下
+               color='red', scale_units='xy', scale=1, width=0.002)
+    plt.title("flow quiver (red arrows = displacement)")
+    plt.savefig(save_path_prefix + "_flow_quiver.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    # ---- Jacobian determinant ----
+    # J = det([[1 + ∂u/∂x, ∂u/∂y], [∂v/∂x, 1 + ∂v/∂y]])
+    du_dx = np.gradient(dx, axis=1)
+    du_dy = np.gradient(dx, axis=0)
+    dv_dx = np.gradient(dy, axis=1)
+    dv_dy = np.gradient(dy, axis=0)
+    J = (1 + du_dx) * (1 + dv_dy) - du_dy * dv_dx
+
+    plt.figure(figsize=(6, 6))
+    plt.imshow(J, cmap='RdBu_r', vmin=0, vmax=2)
+    plt.colorbar(label='det(J)')
+    plt.title(f"Jacobian: mean={J.mean():.3f}, "
+              f"min={J.min():.3f}, max={J.max():.3f}, "
+              f"fold_ratio={(J <= 0).mean()*100:.2f}%")
+    plt.savefig(save_path_prefix + "_flow_jacobian.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    # ---- fold mask（J <= 0 区域）----
+    fold_mask = (J <= 0).astype(np.float32)
+    plt.figure(figsize=(6, 6))
+    plt.imshow(fold_mask, cmap='hot')
+    plt.title(f"fold mask (red = J <= 0): "
+              f"{fold_mask.sum():.0f} px ({fold_mask.mean()*100:.2f}%)")
+    plt.savefig(save_path_prefix + "_flow_fold.png", dpi=80, bbox_inches='tight')
+    plt.close()
+
+    return {
+        "dx_mean": float(dx.mean()), "dx_std": float(dx.std()),
+        "dy_mean": float(dy.mean()), "dy_std": float(dy.std()),
+        "mag_mean": float(mag.mean()), "mag_max": float(mag.max()),
+        "jacobian_mean": float(J.mean()),
+        "jacobian_min": float(J.min()),
+        "fold_ratio": float((J <= 0).mean()),
+    }
+
+
+# ---------------------------------------------------------------------------
+# 模型加载
+# ---------------------------------------------------------------------------
+
+class _LoRAHelper(DiffusionTrainingModule):
+    def forward(self, *a, **kw): pass
+
+
+def load_pipeline(args, device):
+    """加载 Qwen pipeline 和 FlowHead V4。"""
+    print("加载 Qwen pipeline...")
+    pipe = QwenImagePipeline.from_pretrained(
+        torch_dtype=torch.bfloat16,
+        device="cuda",
+        model_configs=[
+            ModelConfig(DIT_SHARDS),
+            ModelConfig(TEXT_ENCODER_SHARDS),
+            ModelConfig(VAE_PATH),
+        ],
+        tokenizer_config=ModelConfig(TOKENIZER_PATH),
+        processor_config=ModelConfig(PROCESSOR_PATH),
+    )
+
+    # 加载 LoRA（DiT 特征质量提升）
+    if args.lora_path and os.path.exists(args.lora_path):
+        helper = _LoRAHelper()
+        lora_modules = [
+            "to_q", "to_k", "to_v", "add_q_proj", "add_k_proj", "add_v_proj",
+            "to_out.0", "to_add_out", "img_mlp.net.2", "img_mod.1",
+            "txt_mlp.net.2", "txt_mod.1",
+        ]
+        dit_with_lora = helper.add_lora_to_model(
+            pipe.dit, target_modules=lora_modules, lora_rank=32)
+        sd = load_state_dict(args.lora_path)
+        sd = helper.mapping_lora_state_dict(sd)
+        dit_with_lora.load_state_dict(sd, strict=False)
+        pipe.dit = dit_with_lora
+        print(f"LoRA 加载完成: {args.lora_path}")
+
+    # 启用 DA-Flow 特征提取模式（在 __call__ 返回 corrected_low + q/k 特征）
+    target_layers = parse_layer_list(args.dit_target_layers)
+    num_layers = len(target_layers)
+
+    # upstream pipeline 的 extract_daflow_features 只支持"最后 N 层"
+    # 需要改为支持任意 target_layers，因此用 monkey-patch 覆盖
+    pipe._v4_target_layers = set(target_layers)
+    pipe._v4_max_layer = max(target_layers)
+    pipe.extract_daflow_features = True   # 开启 __call__ 中的特征返回分支
+    pipe.daflow_num_layers = num_layers   # 兼容 upstream 的参数
+
+    # Monkey-patch pipeline __call__ 特征提取部分，支持任意层
+    _patch_pipeline_for_v4(pipe)
+
+    pipe.enable_vram_management()
+
+    # 加载 FlowHead V4
+    flow_model = FlowHeadV4LayerProbe(
+        iters=args.flow_iters,
+        num_dit_layers=num_layers,
+        diff_out_ch=args.diff_out_ch,
+    ).to(device).eval()
+
+    if args.ckpt_path and os.path.exists(args.ckpt_path):
+        from safetensors.torch import load_file
+        sd = load_file(args.ckpt_path, device=str(device))
+        # 训练时 ModelLogger 用 --remove_prefix_in_ckpt "flow_head." 已经剥过一次顶层前缀。
+        # 顶层 self.flow_head.context_encoder.* → ckpt key 是 context_encoder.*
+        # 内层 self.flow_head.flow_head.* (FlowPredHead) → ckpt key 是 flow_head.*
+        # 推理时直接加载，不要再 replace("flow_head.", "")，否则会把内层 flow_head 也剥掉。
+        missing, unexpected = flow_model.load_state_dict(sd, strict=False)
+        # 过滤掉 BatchNorm buffer（running_mean/var/num_batches_tracked），
+        # 这些是训练时自然累积的统计量，未保存属于已知问题（不影响 eval）
+        critical_missing = [k for k in missing
+                            if not any(b in k for b in
+                                       ['running_mean', 'running_var', 'num_batches_tracked'])]
+        print(f"FlowHead V4 加载: {len(sd)} key，"
+              f"缺失 {len(missing)}（其中 {len(critical_missing)} 个是参数，"
+              f"其余为 BN buffer），多余 {len(unexpected)}")
+        if critical_missing:
+            print(f"  ! 关键参数缺失（前 5 个）：{critical_missing[:5]}")
+        if unexpected:
+            print(f"  ! 多余 ckpt key（前 5 个）：{unexpected[:5]}")
+    else:
+        print("警告：未提供 --ckpt_path，FlowHead V4 使用随机权重（效果无意义）")
+
+    return pipe, flow_model, target_layers
+
+
+def _patch_pipeline_for_v4(pipe):
+    """
+    Monkey-patch QwenImagePipeline.__call__ 里的特征提取部分，
+    将"取最后 N 层"替换为"取 pipe._v4_target_layers 指定的任意层"。
+
+    upstream 代码：
+        target_indices = list(range(num_blocks - self.daflow_num_layers, num_blocks))
+
+    patch 后：
+        target_indices = sorted(self._v4_target_layers)
+        并在 self._v4_max_layer 处提前退出
+    """
+    original_call = pipe.__class__.__call__
+
+    def patched_call(self, *args, **kwargs):
+        if not getattr(self, 'extract_daflow_features', False):
+            return original_call(self, *args, **kwargs)
+
+        # ============================================================
+        # 关键修复：完全复用 pipeline units 准备 inputs，与训练 forward_preprocess 一致
+        # ============================================================
+        # 训练时 (train_flow_head_v4_layer_probe.py)：
+        #   forward_preprocess 调用 pipe.units 流水线，得到：
+        #     input_latents   = vae.encode(warped)   ← 来自 InputImageEmbedder
+        #     noise           = randn_like(latent)   ← 来自 NoiseInitializer
+        #     prompt_emb      = 经过 extract_masked_hidden + drop + pad 处理 ← 来自 PromptEmbedder
+        #     prompt_emb_mask = 重新构造的 mask
+        #   _extract_qk_features 用这些 inputs，加噪到 t≈500，跑 DiT 前向
+        #
+        # 之前推理 patched_call 自己手动调用 vae.encode + text_encoder，
+        # 没有经过 PromptEmbedder 的 extract_masked_hidden + drop_idx + pad，
+        # 导致 prompt_emb 内容、长度、对齐都与训练不一致 → DiT 特征分布偏移 → flow 错乱。
+        # ============================================================
+        self.extract_daflow_features = False
+        image = original_call(self, *args, **kwargs)   # corrected_low (供 RGB 通道用)
+        self.extract_daflow_features = True
+
+        height = kwargs.get('height', 1024)
+        width  = kwargs.get('width',  1024)
+        edit_image = kwargs.get('edit_image', None)
+        prompt     = kwargs.get('prompt', '')
+
+        if edit_image is None:
+            return image, [], []
+
+        from einops import rearrange as _r
+
+        # ---- Step 1：完全复用 pipeline units 准备 inputs（与训练 forward_preprocess 一致）----
+        # 关键：input_image = warped (不是 corrected)
+        if not self.scheduler.training:
+            self.scheduler.set_timesteps(1000, training=True)
+
+        inputs_posi = {"prompt": prompt}
+        inputs_nega = {"negative_prompt": ""}
+        inputs_shared = {
+            "input_image": edit_image,   # warped → input_latents 来自 warped
+            "edit_image":  edit_image,
+            "height": height, "width": width,
+            "cfg_scale": 1, "rand_device": self.device,
+            "use_gradient_checkpointing": False,
+            "use_gradient_checkpointing_offload": False,
+        }
+        with torch.no_grad():
+            for unit in self.units:
+                inputs_shared, inputs_posi, inputs_nega = self.unit_runner(
+                    unit, self, inputs_shared, inputs_posi, inputs_nega)
+
+        input_latents   = inputs_shared["input_latents"]
+        noise           = inputs_shared.get("noise")
+        if noise is None:
+            noise = torch.randn_like(input_latents)
+        prompt_emb      = inputs_posi["prompt_emb"]
+        prompt_emb_mask = inputs_posi["prompt_emb_mask"]
+
+        # ---- Step 2：加噪到中等 timestep（与训练 [400,600) 一致）----
+        timestep = self.scheduler.timesteps[500].to(
+            dtype=self.torch_dtype, device=self.device).reshape(1)
+        noisy_latent = self.scheduler.add_noise(input_latents, noise, timestep)
+
+        # ---- Step 3：DiT 单步前向，提取指定层 Q/K ----
+        self.load_models_to_device(['dit'])
+        dit_raw = self.dit.module if hasattr(self.dit, 'module') else self.dit
+
+        h_val, w_val = height, width
+        img_shapes = [(noisy_latent.shape[0],
+                       noisy_latent.shape[2] // 2, noisy_latent.shape[3] // 2)]
+        txt_seq_lens = prompt_emb_mask.sum(dim=1).tolist()
+
+        image_tokens = _r(noisy_latent, "B C (H P) (W Q) -> B (H W) (C P Q)",
+                          H=h_val // 16, W=w_val // 16, P=2, Q=2)
+        image_tokens = dit_raw.img_in(image_tokens)
+        text_tokens  = dit_raw.txt_in(dit_raw.txt_norm(prompt_emb))
+        conditioning     = dit_raw.time_text_embed(timestep, image_tokens.dtype)
+        image_rotary_emb = dit_raw.pos_embed(img_shapes, txt_seq_lens,
+                                              device=noisy_latent.device)
+
+        q_features, k_features = [], []
+        target_layers = self._v4_target_layers
+        max_layer = self._v4_max_layer
+        with torch.no_grad():
+            for block_idx, block in enumerate(dit_raw.transformer_blocks):
+                if block_idx in target_layers:
+                    img_normed = block.img_norm1(image_tokens)
+                    img_mod_attn, _ = block.img_mod(conditioning).chunk(2, dim=-1)
+                    img_modulated, _ = block._modulate(img_normed, img_mod_attn)
+                    q_features.append(block.attn.to_q(img_modulated).float())
+                    k_features.append(block.attn.to_k(img_modulated).float())
+                text_tokens, image_tokens = block(
+                    image=image_tokens, text=text_tokens, temb=conditioning,
+                    image_rotary_emb=image_rotary_emb)
+                if block_idx == max_layer:
+                    break
+
+        return image, q_features, k_features
+
+    import types
+    pipe.__call__ = types.MethodType(patched_call, pipe)
+
+
+def _run_guided_qwen_pass(
+    pipe,
+    *,
+    prompt: str,
+    edit_image: Image.Image,
+    seed: int,
+    num_inference_steps: int,
+    width: int,
+    height: int,
+    flow: torch.Tensor,
+    scale: float,
+    start: float,
+    end: float,
+):
+    """Run the real upstream denoising loop with a temporary flow hook.
+
+    The installed upstream DiffSynth pipeline is intentionally left untouched:
+    its inherited ``step`` method is wrapped only for this invocation.  The
+    wrapper receives ``input_latents``/``edit_latents`` from the pipeline's
+    own units, constructs a noisy flow-warped anchor, and blends it after each
+    scheduler update in the requested late-denoising window.
+    """
+    import types
+
+    original_step = pipe.step
+    flow = flow.detach()
+
+    def guided_step(self, scheduler, latents, progress_id, noise_pred, **kwargs):
+        next_latents = original_step(
+            scheduler, latents, progress_id, noise_pred, **kwargs
+        )
+        progress = (int(progress_id) + 1) / max(len(scheduler.timesteps), 1)
+        if not (float(start) <= progress <= float(end)):
+            return next_latents
+        anchor_latents = kwargs.get("input_latents")
+        if anchor_latents is None:
+            anchor_latents = kwargs.get("edit_latents")
+        if anchor_latents is None:
+            raise ValueError(
+                "flow guidance requires input_latents or edit_latents; "
+                "the Qwen edit image was not encoded"
+            )
+        sigma = scheduler.sigmas[int(progress_id)].to(
+            device=next_latents.device, dtype=next_latents.dtype
+        )
+        noise = kwargs.get("noise")
+        if noise is None:
+            raise ValueError("flow guidance requires the pipeline noise tensor")
+        return apply_backward_flow_guidance(
+            next_latents,
+            flow,
+            anchor_latents.to(device=next_latents.device, dtype=next_latents.dtype),
+            noise=noise,
+            sigma=sigma,
+            scale=scale,
+            source_size=(height, width),
+            noisy_anchor=True,
+            detach_anchor=True,
+        )
+
+    pipe.step = types.MethodType(guided_step, pipe)
+    try:
+        return pipe(
+            prompt=prompt,
+            edit_image=edit_image,
+            seed=seed,
+            num_inference_steps=num_inference_steps,
+            width=width,
+            height=height,
+        )
+    finally:
+        pipe.step = original_step
+
+
+# ---------------------------------------------------------------------------
+# 主推理循环
+# ---------------------------------------------------------------------------
+
+def process_images(args):
+    os.makedirs(args.output_dir, exist_ok=True)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    pipe, flow_model, target_layers = load_pipeline(args, device)
+
+    prompt_map = None
+    if args.prompt_dict:
+        prompt_map = {}
+        with open(args.prompt_dict, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                prompt_map[row["image"]] = row["prompt"]
+
+    exts = ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.JPG", "*.JPEG", "*.PNG"]
+    image_files = [args.input_dir] if os.path.isfile(args.input_dir) else []
+    if not image_files:
+        for root, _, _ in os.walk(args.input_dir):
+            for ext in exts:
+                image_files.extend(glob.glob(os.path.join(root, ext)))
+    image_files = sorted(image_files)
+    print(f"找到 {len(image_files)} 张图像")
+
+    for img_path in tqdm(image_files, desc="V4 推理"):
+        rel_path = os.path.basename(img_path) if os.path.isfile(args.input_dir) \
+                   else os.path.relpath(img_path, args.input_dir)
+        out_base = os.path.splitext(os.path.join(args.output_dir, rel_path))[0]
+        os.makedirs(os.path.dirname(out_base), exist_ok=True)
+
+        if os.path.exists(out_base + "_c.jpg"):
+            print(f"跳过（已存在）: {rel_path}")
+            continue
+
+        try:
+            orig_img = Image.open(img_path).convert("RGB")
+            orig_w, orig_h = orig_img.size
+
+            img_input, infer_w, infer_h = preprocess_image(
+                orig_img, args.img_size, args.resize_mode)
+
+            cur_prompt = (prompt_map.get(os.path.basename(img_path), args.prompt)
+                          if prompt_map else args.prompt)
+
+            # ---- Stage 1：Qwen 完整扩散推理 + 提取 Q/K 特征 ----
+            seed = random.randint(0, 2**32 - 1)
+            result = pipe(
+                prompt=cur_prompt,
+                edit_image=img_input,
+                seed=seed,
+                num_inference_steps=args.infer_steps,
+                width=infer_w,
+                height=infer_h,
+            )
+            corrected_low, q_features, k_features = result
+            print(f"  扩散推理完成，提取 {len(q_features)} 层 Q/K 特征，"
+                  f"层索引: {sorted(target_layers)}")
+
+            if not q_features:
+                print(f"  警告：Q/K 特征为空，跳过 {rel_path}")
+                continue
+
+            # ---- Stage 2：FlowHead V4 预测光流 ----
+            # GT reference sanity check（diagnose.md Step 4）：
+            # 若指定 --use_gt_corrected_dir，则优先用 GT 替代 corrected_low
+            corrected_pil = corrected_low
+            corrected_source = "corrected_low (Qwen 扩散输出)"
+            if args.use_gt_corrected_dir:
+                gt_candidates = [
+                    os.path.join(args.use_gt_corrected_dir, os.path.basename(img_path)),
+                    os.path.join(args.use_gt_corrected_dir,
+                                 os.path.splitext(os.path.basename(img_path))[0] + ".png"),
+                    os.path.join(args.use_gt_corrected_dir,
+                                 os.path.splitext(os.path.basename(img_path))[0] + ".jpg"),
+                ]
+                for gtp in gt_candidates:
+                    if os.path.exists(gtp):
+                        gt_pil = Image.open(gtp).convert("RGB").resize(
+                            (infer_w, infer_h), Image.LANCZOS)
+                        corrected_pil = gt_pil
+                        corrected_source = f"GT rectified ({gtp})"
+                        break
+            print(f"  corrected 输入: {corrected_source}")
+
+            corrected_t = pil_to_tensor(corrected_pil, device)
+            warped_t    = pil_to_tensor(img_input,    device)
+
+            with torch.no_grad():
+                flow_low = flow_model(
+                    corrected_t.float(), warped_t.float(),
+                    q_features, k_features,
+                    iters=args.flow_iters,
+                )
+            print(f"  光流估计完成，abs_mean: {flow_low.abs().mean():.2f}px, "
+                  f"max: {flow_low.abs().max():.2f}px")
+
+            # ---- Optional Stage 2b: feed the predicted backward flow into
+            # Qwen's late denoising steps.  The second pass anchors the edit
+            # latent sampled from the original pixels, so small glyphs are
+            # moved rather than regenerated.  The default scale is zero and
+            # therefore preserves the established one-pass V4 behavior.
+            if args.flow_guidance_scale > 0.0:
+                print(
+                    "  启用 diffusion 内光流引导："
+                    f"scale={args.flow_guidance_scale:.3f}, "
+                    f"window=[{args.flow_guidance_start:.2f},"
+                    f"{args.flow_guidance_end:.2f}]"
+                )
+                guided_result = _run_guided_qwen_pass(
+                    pipe,
+                    prompt=cur_prompt,
+                    edit_image=img_input,
+                    seed=seed,
+                    num_inference_steps=args.infer_steps,
+                    width=infer_w,
+                    height=infer_h,
+                    flow=flow_low,
+                    scale=args.flow_guidance_scale,
+                    start=args.flow_guidance_start,
+                    end=args.flow_guidance_end,
+                )
+                corrected_low, q_features, k_features = guided_result
+                corrected_t = pil_to_tensor(corrected_low, device)
+                with torch.no_grad():
+                    flow_low = flow_model(
+                        corrected_t.float(), warped_t.float(),
+                        q_features, k_features,
+                        iters=args.flow_iters,
+                    )
+                print(
+                    f"  引导后重新估计光流完成，abs_mean: "
+                    f"{flow_low.abs().mean():.2f}px"
+                )
+
+            # ---- 可选：保存 flow 诊断图（diagnose.md Step 3）----
+            if args.save_flow_vis:
+                stats = visualize_flow(flow_low, out_base)
+                print(f"  flow 诊断图已保存，"
+                      f"|flow|.mean={stats['mag_mean']:.2f}, "
+                      f"J.min={stats['jacobian_min']:.3f}, "
+                      f"fold_ratio={stats['fold_ratio']*100:.2f}%")
+
+            # ---- Stage 3：上采样光流到原始分辨率 ----
+            flow_hires = upscale_flow(flow_low, orig_h, orig_w)
+
+            # ---- Stage 4：高清 warp ----
+            result_hires = warp_image_with_flow(orig_img, flow_hires)
+            print(f"  warp 完成，输出尺寸: {result_hires.size}")
+
+            # ---- 保存 ----
+            img_input.save(out_base + "_a.jpg")
+            corrected_low.save(out_base + "_b.jpg")
+            result_hires.save(out_base + "_c.jpg", quality=95)
+
+            # 三合一对比图
+            corrected_resized = corrected_low.resize((orig_w, orig_h), Image.LANCZOS)
+            compare = Image.new("RGB", (orig_w * 3, orig_h))
+            compare.paste(orig_img,          (0,          0))
+            compare.paste(corrected_resized, (orig_w,     0))
+            compare.paste(result_hires,      (orig_w * 2, 0))
+            compare.save(out_base + "_d.jpg", quality=90)
+            print(f"  已保存: {os.path.basename(out_base)}_[a-d].jpg")
+
+        except Exception as e:
+            import traceback
+            print(f"错误 [{rel_path}]: {e}")
+            traceback.print_exc()
+
+
+# ---------------------------------------------------------------------------
+# 主函数
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="FlowHead V4 推理：Qwen 扩散推理 + FlowHeadV4 光流 + 高清 warp")
+
+    parser.add_argument("--input_dir",   type=str, required=True,
+                        help="输入图像目录或单张图像路径")
+    parser.add_argument("--output_dir",  type=str, required=True,
+                        help="输出目录")
+    # FlowHead V4 ckpt
+    parser.add_argument("--ckpt_path",   type=str, required=True,
+                        help="FlowHead V4 checkpoint 路径（safetensors）")
+    parser.add_argument("--dit_target_layers", type=str, default="35",
+                        help="DiT 目标层（0-based，逗号分隔），与训练时一致。"
+                             "例：单层=\"35\"，三层=\"23,35,47\"")
+    parser.add_argument("--diff_out_ch", type=int, default=96)
+    parser.add_argument("--flow_iters", type=int, default=4,
+                        help="FlowHead 迭代次数。训练用 4，推理也用 4。")
+    parser.add_argument("--flow_guidance_scale", type=float, default=0.0,
+                        help="第二遍 diffusion 的 latent 光流锚定强度；0 表示关闭。")
+    parser.add_argument("--flow_guidance_start", type=float, default=0.60,
+                        help="按 denoising progress 启用引导的起点（0~1）。")
+    parser.add_argument("--flow_guidance_end", type=float, default=1.0,
+                        help="按 denoising progress 启用引导的终点（0~1）。")
+    # LoRA
+    parser.add_argument("--lora_path",   type=str,
+                        default="/juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio/"
+                                "result/20250929-1_1in10_w_unwarp/step-668000.safetensors",
+                        help="DiT LoRA checkpoint（提升特征质量）")
+    # 推理参数
+    parser.add_argument("--img_size",    type=int, default=1024)
+    parser.add_argument("--infer_steps", type=int, default=50)
+    parser.add_argument("--resize_mode", type=str, default="stretch",
+                        choices=["stretch", "crop", "scale_to_short_side"])
+    # 诊断
+    parser.add_argument("--save_flow_vis", action="store_true",
+                        help="保存 flow 的 6 张诊断图（dx/dy heatmap, magnitude, "
+                             "quiver, Jacobian, fold mask）。diagnose.md Step 3")
+    parser.add_argument("--use_gt_corrected_dir", type=str, default=None,
+                        help="GT reference sanity check（diagnose.md Step 4）。"
+                             "若提供该目录，每张输入图会优先去这里找同名 GT 矫正图，"
+                             "用 GT 替代 Qwen corrected_low 作为 FlowHead 的 corrected 输入。"
+                             "若 GT 模式正常但 corrected_low 模式崩坏，"
+                             "说明问题是 corrected_low 的 domain gap。")
+    # Prompt
+    parser.add_argument("--prompt", type=str,
+                        default="Flatten this warped or curled document image to a flat, "
+                                "undistorted version. Preserve all text, lines, and content accurately.")
+    parser.add_argument("--prompt_dict", type=str, default=None,
+                        help="CSV 文件，覆盖每张图的 prompt（列：image,prompt）")
+    args = parser.parse_args()
+    process_images(args)
+
+
+if __name__ == "__main__":
+    main()

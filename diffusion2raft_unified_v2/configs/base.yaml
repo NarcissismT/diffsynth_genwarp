@@ -1,0 +1,92 @@
+seed: 42
+device: cuda
+
+data:
+  train_manifest: data/train.jsonl
+  val_manifest: data/val.jsonl
+  # [height, width]. Use the same aspect-ratio policy for guide generation,
+  # training, and inference. Qwen unified runs require divisibility by 32.
+  work_size: [768, 768]
+  # Qwen-Image-Edit-Plus currently accepts one image per invocation. With
+  # torchrun this is the per-rank batch size, so 8 GPUs still give batch 8.
+  batch_size: 1
+  num_workers: 4
+  guide_artifact_prob: 0.65
+  guide_dropout_prob: 0.10
+
+model:
+  # `feature_backend: qwen` is used by the new unified stage. `lite` exists
+  # only for smoke tests and must not be used for final experiments.
+  feature_backend: qwen
+  feature_channels: 96
+  feature_stride: 8
+  cnn_feature_channels: 64
+  refiner_hidden_channels: 128
+  refiner_iterations: 6
+  correlation_radius: 4
+  feature_dropout_prob: 0.10
+  raft_size: large
+  raft_pretrained: true
+  raft_checkpoint: null
+  prior_base_channels: 32
+  prior_max_displacement_ratio: 0.35
+  prior_control_stride: 8
+  # RAFT is deliberately a local residual corrector. This bound is the main
+  # guard against hallucinated guide text turning into ripple-like flow.
+  max_residual_px: 32.0
+  guide_dropout_prob: 0.10
+
+train:
+  # Run `prior` first, then resume its checkpoint with `unified`.
+  stage: prior
+  epochs: 20
+  lr_prior: 0.0002
+  # Unified training starts from Stage A. Keep the prior fixed through a zero
+  # LR for two epochs, then jointly fine-tune it conservatively.
+  lr_prior_joint: 0.00002
+  lr_unified: 0.0001
+  lr_raft: 0.00002
+  freeze_prior_epochs: 2
+  weight_decay: 0.00001
+  grad_clip: 1.0
+  amp: true
+  amp_dtype: bfloat16
+  log_every: 20
+  save_every: 1
+  output_dir: runs/d2r
+  resume: null
+
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  prior_flow_unified: 0.25
+  reconstruction: 0.15
+  gradient: 0.10
+  bending: 0.02
+  anti_fold: 0.20
+  residual: 0.002
+  min_jacobian: 0.05
+
+qwen:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  prompt: >-
+    Rectify the warped photographed document into a flat front-facing page on
+    the same canvas. Preserve every character, line, illustration, and margin.
+    Do not add, remove, rewrite, translate, sharpen, or restyle any content.
+    Change geometry only.
+  num_inference_steps: 40
+  true_cfg_scale: 4.0
+  guidance_scale: 1.0
+  seed: 0
+  # Unified feature extraction stops before VAE decoding. The final denoising
+  # step from these selected transformer blocks is projected to a 1/8 grid.
+  feature_num_inference_steps: 4
+  feature_layers: [-24, -12, -1]
+  feature_dtype: bfloat16
+  feature_quantization: none
+  quantize_components: [transformer]
+  feature_seed: 0
+  cpu_offload: false
+  local_files_only: false

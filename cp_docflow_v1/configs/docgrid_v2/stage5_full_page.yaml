@@ -1,0 +1,34 @@
+extends: base_full.yaml
+
+data:
+  # Change these to the verified full-page manifests before Gate 5 training.
+  train_manifest: ${DOCGRID_STAGE5_TRAIN_MANIFEST:-data/train_docgrid_v2_full_page.jsonl}
+  val_manifest: ${DOCGRID_STAGE5_VAL_MANIFEST:-data/val_docgrid_v2_full_page.jsonl}
+  input_work_size: [1024, 768]
+  output_work_size: [1024, 768]
+  frozen_contract: ${DOCGRID_STAGE5_FROZEN_CONTRACT:-runs/docgrid_v2/stage0_full_page_audit/frozen_contract.json}
+  stage5_mix:
+    enabled: true
+    low_input_size: [512, 384]
+    low_output_size: [512, 384]
+    structure_patch_size: [512, 384]
+    probabilities:
+      low_page: 0.25
+      structure_patch: 0.50
+      full_page: 0.25
+    samples_per_epoch_multiplier: 3.0
+
+model:
+  instantiate_qwen_adapter: true
+
+train:
+  stage: full_page
+  parent_checkpoint: ${DOCGRID_STAGE5_PARENT_CHECKPOINT:-runs/docgrid_v2/stage4_qwen/seed-1337/best.pt}
+  gate_receipts:
+    gate1: ${DOCGRID_GATE1_RECEIPT:-runs/docgrid_v2/gates/gate1.json}
+    gate2: ${DOCGRID_GATE2_RECEIPT:-runs/docgrid_v2/gates/gate2.json}
+    gate3: ${DOCGRID_GATE3_RECEIPT:-runs/docgrid_v2/gates/gate3.json}
+    gate4: ${DOCGRID_GATE4_RECEIPT:-runs/docgrid_v2/gates/gate4.json}
+  output_dir: runs/docgrid_v2/stage5_full_page/seed-1337
+  epochs: 20
+  learning_rate: 0.00002

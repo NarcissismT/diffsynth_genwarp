@@ -1,0 +1,14 @@
+# Install in the Slurm image before freezing/running the experiment.
+# The Plus/2511 override may require a newer official Diffusers build.
+torch>=2.1
+diffusers==0.39.0
+transformers>=4.51
+accelerate>=1.2
+peft>=0.10
+safetensors>=0.4
+numpy>=1.24
+Pillow>=9.5
+PyYAML>=5.4
+pandas>=2.0
+pyarrow>=12
+matplotlib>=3.7

@@ -1,0 +1,35 @@
+seed: 7
+
+data:
+  train_manifest: tmp/smoke/train.jsonl
+  val_manifest: tmp/smoke/val.jsonl
+  input_work_size: [64, 64]
+  output_work_size: [64, 64]
+  allowed_label_provenance: [synthetic_analytic]
+
+model:
+  base_channels: 8
+  feature_channels: 16
+  max_displacement_ratio: 0.45
+  min_log_variance: -6.0
+  max_log_variance: 6.0
+
+loss:
+  map: 1.0
+  confidence: 0.05
+  warp: 0.10
+  gradient: 0.05
+  bending: 0.01
+  anti_fold: 0.10
+
+train:
+  output_dir: tmp/smoke_run_contract_v1
+  device: cpu
+  epochs: 1
+  batch_size: 2
+  eval_batch_size: 1
+  num_workers: 0
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  mixed_precision: false

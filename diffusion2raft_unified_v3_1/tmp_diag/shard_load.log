@@ -1,0 +1,33 @@
+visible GPUs: 16
+[1] loading sharded transformer via device_map=auto ...
+Loading checkpoint shards:   0%|          | 0/9 [00:00<?, ?it/s]Loading checkpoint shards:  11%|█         | 1/9 [00:01<00:11,  1.44s/it]Loading checkpoint shards:  22%|██▏       | 2/9 [00:02<00:10,  1.48s/it]Loading checkpoint shards:  33%|███▎      | 3/9 [00:04<00:08,  1.48s/it]Loading checkpoint shards:  44%|████▍     | 4/9 [00:45<01:25, 17.03s/it]Loading checkpoint shards:  56%|█████▌    | 5/9 [01:26<01:43, 25.85s/it]Loading checkpoint shards:  67%|██████▋   | 6/9 [02:00<01:26, 28.67s/it]Loading checkpoint shards:  78%|███████▊  | 7/9 [02:40<01:04, 32.12s/it]Loading checkpoint shards:  89%|████████▉ | 8/9 [03:13<00:32, 32.63s/it]Loading checkpoint shards: 100%|██████████| 9/9 [03:21<00:00, 24.74s/it]Loading checkpoint shards: 100%|██████████| 9/9 [03:21<00:00, 22.36s/it]
+    transformer loaded in 207.4s
+    device_map spread: Counter({'0': 8, '1': 5, '2': 5, '3': 5, '4': 5, '5': 5, '6': 5, '7': 5, '8': 5, '9': 5, '10': 5, '11': 5, '12': 4})
+[2] loading pipeline with sharded transformer ...
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  17%|█▋        | 1/6 [00:00<00:02,  1.87it/s]Loading pipeline components...:  50%|█████     | 3/6 [00:01<00:01,  1.72it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:10<00:31, 10.56s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:12,  6.45s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:17<00:04,  4.92s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  3.12s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  4.40s/it]
+Loading pipeline components...:  67%|██████▋   | 4/6 [00:19<00:13,  6.53s/it]Loading pipeline components...: 100%|██████████| 6/6 [00:24<00:00,  4.62s/it]Loading pipeline components...: 100%|██████████| 6/6 [00:24<00:00,  4.14s/it]
+    pipeline built in 232.2s
+Traceback (most recent call last):
+  File "/juicefs-algorithm/workspace/IPT/zhuochu_yang/diffsynth_genwarp/diffusion2raft_unified_v3_1/tmp_diag/test_shard_load.py", line 32, in <module>
+    pipe.text_encoder.to(te_dev)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/modeling_utils.py", line 4341, in to
+    return super().to(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1340, in to
+    return self._apply(convert)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  [Previous line repeated 3 more times]
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 927, in _apply
+    param_applied = fn(param)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1326, in convert
+    return t.to(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 15 has a total capacity of 22.19 GiB of which 51.12 MiB is free. Process 1545132 has 11.13 GiB memory in use. Process 1545762 has 11.00 GiB memory in use. Of the allocated memory 10.61 GiB is allocated by PyTorch, and 170.67 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

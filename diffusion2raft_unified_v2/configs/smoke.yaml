@@ -1,0 +1,71 @@
+seed: 7
+device: cuda
+
+data:
+  train_manifest: tmp/smoke_data/train.jsonl
+  val_manifest: tmp/smoke_data/val.jsonl
+  work_size: [128, 128]
+  batch_size: 1
+  num_workers: 0
+  guide_artifact_prob: 0.0
+  guide_dropout_prob: 0.0
+
+model:
+  feature_backend: lite
+  feature_channels: 32
+  feature_stride: 8
+  cnn_feature_channels: 24
+  refiner_hidden_channels: 32
+  refiner_iterations: 2
+  correlation_radius: 2
+  feature_dropout_prob: 0.0
+  raft_size: small
+  raft_pretrained: false
+  raft_checkpoint: null
+  prior_base_channels: 8
+  prior_max_displacement_ratio: 0.25
+  prior_control_stride: 8
+  max_residual_px: 16.0
+  guide_dropout_prob: 0.0
+
+train:
+  stage: prior
+  epochs: 1
+  lr_prior: 0.0002
+  lr_prior_joint: 0.00002
+  lr_unified: 0.0001
+  lr_raft: 0.00002
+  freeze_prior_epochs: 0
+  weight_decay: 0.0
+  grad_clip: 1.0
+  amp: false
+  amp_dtype: bfloat16
+  log_every: 1
+  save_every: 1
+  output_dir: runs/smoke
+  resume: null
+
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  prior_flow_unified: 0.25
+  reconstruction: 0.15
+  gradient: 0.10
+  bending: 0.02
+  anti_fold: 0.20
+  residual: 0.002
+  min_jacobian: 0.05
+
+qwen:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  prompt: Rectify document geometry only and preserve all content.
+  num_inference_steps: 4
+  true_cfg_scale: 4.0
+  guidance_scale: 1.0
+  seed: 0
+  feature_num_inference_steps: 1
+  feature_layers: [-1]
+  feature_dtype: float32
+  feature_quantization: none

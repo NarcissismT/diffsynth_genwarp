@@ -1,0 +1,16 @@
+schema: docgrid_flow.frozen_supervised_prior_baseline.v1
+
+# Historical strong supervised rectifier, frozen by exact path/size/SHA-256.
+# It is evaluated only as Gate-1 evidence and is never part of DocGrid-Flow.
+checkpoint: /juicefs-algorithm/lts_data/IPT/pengcheng_yu/exps/26/dewarp/0709_v3v42v2_OriFtGrad10_AugFP32_bigrot/checkpoints/259999_raft_unwarp.pt
+checkpoint_sha256: 3d079e19445168169144f2af741362f673289b6510df4a4c1af348449ae045b9
+checkpoint_size_bytes: 3470866785
+
+input_size: 512
+flow_size: 512
+blur_kernel: 39
+autocast_dtype: float16
+requires_logical_cuda0: true
+
+evaluation_input_work_size: [512, 512]
+evaluation_output_work_size: [512, 512]

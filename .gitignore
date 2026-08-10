@@ -1,0 +1,48 @@
+# Python 缓存与测试缓存
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 虚拟环境、编辑器和系统文件
+.venv/
+venv/
+.env
+.env.*
+.vscode/
+.DS_Store
+
+# 模型权重与导出文件
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.gguf
+*.h5
+*.pb
+
+# 本地模型和数据缓存
+/models/
+/data/
+**/torch_cache/
+
+# 训练、推理和实验产物
+/artifacts/
+/slurm/logs/
+/slurm-log/
+**/runs/
+**/logs/
+**/tmp/
+/result/
+/*_results/
+
+# 构建和安装产物
+build/
+dist/
+*.egg-info/
+
+# 临时文件
+*.tmp
+*.swp

@@ -1,0 +1,76 @@
+# Real-data config for upwarp_img_1in10_white_0511.
+#
+# Images are 512x512 and the GT flow is authored on a 1024x1024 canvas; the
+# manifest carries flow_source_size=[1024,1024] and the loader rescales the flow
+# coordinate map to work_size. The corrected_vae output is used as the guide, so
+# the joint stage needs NO Qwen generation for the first round of experiments.
+#
+# Round 1:
+#   d2r-train --config configs/upwarp_512.yaml --stage prior
+#   d2r-train --config configs/upwarp_512.yaml --stage joint \
+#             --resume runs/upwarp512/prior/latest.pt
+#   d2r-eval  --config configs/upwarp_512.yaml --stage joint \
+#             --checkpoint runs/upwarp512/joint/latest.pt --manifest data/val.jsonl
+seed: 42
+device: cuda
+
+data:
+  train_manifest: data/train.jsonl
+  val_manifest: data/val.jsonl
+  # 512 matches the native image resolution and is divisible by 8 for RAFT.
+  # Final pixel fidelity is capped by the 512 source, so going higher than 512
+  # only helps the target grid, not the sampled pixels.
+  work_size: [512, 512]
+  batch_size: 4
+  num_workers: 8
+  eval_batch_size: 2
+  guide_artifact_prob: 0.65
+  guide_dropout_prob: 0.10
+
+model:
+  raft_size: large
+  raft_pretrained: true
+  raft_checkpoint: null
+  prior_base_channels: 32
+  prior_max_displacement_ratio: 0.35
+  prior_control_stride: 8
+  max_residual_px: 32.0
+  guide_dropout_prob: 0.10
+  residual_mode: compose
+
+train:
+  stage: prior
+  epochs: 20
+  lr_prior: 0.0002
+  lr_raft: 0.00002
+  weight_decay: 0.00001
+  grad_clip: 1.0
+  amp: true
+  log_every: 50
+  save_every: 1
+  output_dir: runs/upwarp512
+  resume: null
+
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  reconstruction: 0.15
+  gradient: 0.10
+  bending: 0.02
+  anti_fold: 0.20
+  residual: 0.002
+  min_jacobian: 0.05
+
+qwen:
+  model_id: Qwen/Qwen-Image-Edit-2511
+  prompt: >-
+    Apply geometric correction to the input document: remove skew, curl, folds
+    and perspective so text lines and table rules become horizontal/vertical,
+    like a flat PDF page. Preserve every character and element; change geometry
+    only. Fill undefined edge regions with solid white.
+  num_inference_steps: 40
+  true_cfg_scale: 4.0
+  guidance_scale: 1.0
+  seed: 0

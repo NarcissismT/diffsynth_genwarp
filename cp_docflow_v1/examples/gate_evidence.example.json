@@ -1,0 +1,15 @@
+{
+  "full_page_scale_stable": false,
+  "multi_seed_stable": false,
+  "fixed_seed_repeatable": false,
+  "ode_steps_validated": false,
+  "efficiency_acceptable": false,
+  "ocr_cer": null,
+  "oracle_ocr_cer": null,
+  "ocr_wer": null,
+  "oracle_ocr_wer": null,
+  "ocr_evaluation": null,
+  "ocr_evaluation_sha256": null,
+  "visual_no_water_ripple": false,
+  "visual_text_table_preserved": false
+}

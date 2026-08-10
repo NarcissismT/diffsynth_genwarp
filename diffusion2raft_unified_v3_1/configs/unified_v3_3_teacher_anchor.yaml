@@ -1,0 +1,163 @@
+# v3.3 continuation anchored by the corrected-512 deployment of the strong
+# supervised model. This is likely the better 259999-2nd path; the named first
+# target folder was probably run with the historical 518 default and is not
+# claimed as pixel-exact. The external teacher stays outside checkpoints.
+seed: 42
+device: cuda
+data:
+  train_manifest: data/train.jsonl
+  val_manifest: data/val.jsonl
+  work_size:
+  - 512
+  - 512
+  batch_size: 1
+  num_workers: 4
+  guide_artifact_prob: 0.65
+  guide_dropout_prob: 0.1
+  source_geometry_augment:
+    probability: 0.70
+    max_rotation_deg: 180.0
+    scale:
+    - 0.85
+    - 1.05
+    translation:
+    - 0.04
+    - 0.04
+    perspective: 0.025
+model:
+  feature_backend: qwen
+  feature_channels: 96
+  feature_stride: 8
+  cnn_feature_channels: 64
+  refiner_hidden_channels: 128
+  refiner_iterations: 6
+  correlation_radius: 4
+  correlation_temperature: 1.0
+  correlation_temperature_start: 9.797959
+  correlation_ramp_start_epoch: 9
+  correlation_ramp_epochs: 3
+  match_temperature: 0.1
+  shared_qwen_projection: false
+  feature_dropout_prob: 0.1
+
+  # Raw Qwen matching was unreliable in v3.1, while its semantic context still
+  # helped. Keep the safe split gates from v3.2.
+  match_confidence_power: 2.0
+  match_confidence_cap: 0.05
+  context_confidence_floor: 0.0
+  detach_confidence_from_refiner: true
+
+  prior_backend: torchscript
+  prior_torchscript_path: /juicefs-algorithm/lts_data/IPT/pengcheng_yu/exps/26/dewarp/0709_v3v42v2_OriFtGrad10_AugFP32_bigrot/checkpoints/259999_raft_unwarp.pt
+  prior_torchscript_sha256: 3d079e19445168169144f2af741362f673289b6510df4a4c1af348449ae045b9
+  prior_torchscript_size: 512
+  prior_torchscript_flow_size: 512
+  prior_torchscript_blur_kernel: 39
+  prior_torchscript_autocast_dtype: float16
+  # The archived production trace embeds cuda:0 literals in its RoPE graph.
+  prior_torchscript_requires_logical_cuda0: true
+  max_residual_px: 24.0
+train:
+  stage: unified
+  # This is the total epoch index. Migration from a completed v3.1 epoch 20
+  # adds twelve teacher-anchored residual-training epochs.
+  epochs: 32
+  lr_prior: 0.0002
+  lr_prior_joint: 1.0e-05
+  lr_unified: 5.0e-05
+  lr_raft: 2.0e-05
+  freeze_prior_epochs: 32
+  # Relative to the actual learned->teacher migration epoch: keep the first
+  # teacher epoch exactly at the baseline, then admit the trained raw residual
+  # over six epochs. The current scale/origin are stored in every checkpoint.
+  residual_warmup_epochs: 1
+  residual_ramp_epochs: 6
+  residual_max_scale: 1.0
+  weight_decay: 1.0e-05
+  grad_clip: 1.0
+  amp: true
+  amp_dtype: bfloat16
+  log_every: 20
+  save_every: 1
+  preview_every: 1
+  output_dir: runs/d2r_v3_3_teacher_anchor
+  best_metric: line_epe
+  best_metric_mode: min
+  # Keep anchor.pt regardless; later line_epe candidates may replace best.pt
+  # only when every release target is strictly better than its boundary and
+  # both line metrics improve over the frozen teacher prior.
+  best_guard:
+    max_epe_exclusive: 5.7501
+    min_epe_gain_exclusive: 0.0
+    min_final_win_rate_exclusive: 0.5
+    max_fold_rate_exclusive: 0.0004
+    min_line_epe_gain_exclusive: 0.0
+    min_line_straightness_gain_exclusive: 0.0
+    min_jacobian_p01: 0.01
+  resume: runs/d2r_v3_1/unified/latest.pt
+loss:
+  sequence_gamma: 0.8
+  max_valid_flow: 1000.0
+  flow: 1.0
+  prior_flow: 0.5
+  prior_flow_unified: 0.25
+  reconstruction: 0.15
+  gradient: 0.1
+  structure_flow: 0.15
+  line_reconstruction: 0.05
+  flow_gradient: 0.05
+  curvature: 0.02
+  line_straightness: 0.10
+  structure_edge_threshold: 0.08
+  structure_edge_temperature: 0.04
+  structure_line_kernel: 15
+  structure_line_threshold: 0.20
+  structure_line_temperature: 0.05
+  bending: 0.002
+  anti_fold: 0.2
+  residual: 0.002
+  residual_flow: 0.25
+  qwen_match: 0.05
+  confidence: 0.02
+  residual_target_iterations: 6
+  max_residual_target: 24.0
+  max_residual_consistency: 1.0
+  gate_temperature_px: 1.0
+  min_jacobian: 0.05
+qwen:
+  model_id: /juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio/models/Qwen-Image-Edit
+  prompt: Rectify the warped photographed document into a flat front-facing page on
+    the same canvas. Preserve every character, line, illustration, and margin. Do
+    not add, remove, rewrite, translate, sharpen, or restyle any content. Change geometry
+    only.
+  feature_num_inference_steps: 4
+  feature_type: hidden
+  feature_layers:
+  - -24
+  - -12
+  - -1
+  feature_dtype: bfloat16
+  feature_quantization: none
+  quantize_components:
+  - transformer
+  feature_seed: 0
+  guidance_scale: 1.0
+  cpu_offload: false
+  local_files_only: true
+  device_map: null
+  device_map_support_device: cuda:1
+  device_map_max_memory_per_gpu: 20GiB
+inference:
+  # Corrected 512 path: preserve the historical OpenCV decoder and AREA/LINEAR
+  # resize branches, while retaining this project's correct absolute-map flow
+  # restoration and internally consistent align_corners=True sampling.
+  resize_policy: stretch
+  padding_mode: replicate
+  image_decoder: opencv
+  resize_interpolation: opencv_baseline
+  inpaint:
+    enabled: true
+    path: /juicefs-algorithm/data/IPT/yuang_feng/DATA/warp_test/common_erase.pt
+    sha256: f93d5573e0433d4d24b80f2c0cb0f3c445b891b17baf3aa939fb9af0421ebb53
+    size: 512
+    dilation: 11

@@ -1,0 +1,69 @@
+seed: 11
+
+data:
+  train_manifest: tmp/smoke/train.jsonl
+  val_manifest: tmp/smoke/val.jsonl
+  input_work_size: [64, 64]
+  output_work_size: [64, 64]
+  allowed_label_provenance: [synthetic_analytic]
+
+model:
+  coarse:
+    base_channels: 8
+    feature_channels: 16
+    max_displacement_ratio: 0.45
+  qwen_backend: lite
+  qwen:
+    hidden_channels: 16
+    feature_layers: [-3, -2, -1]
+  qwen_feature_channels: 12
+  fusion_channels: 16
+  fusion_mode: gated
+  hv_channels: 8
+  velocity_hidden_channels: 16
+  velocity_time_channels: 16
+  flow_blocks: 2
+  flow_heads: 4
+  flow_window_size: 4
+  flow_global_pool_size: 2
+  max_velocity_px: 8.0
+  anchor_strength: 0.25
+  sigma_max: 1.0
+  fm_steps: 2
+  enable_flow_matching: true
+  refiner_hidden_channels: 16
+  refiner_iterations: 2
+  refiner_max_step_px: 1.0
+  confidence_preserve_strength: 0.75
+  inference_seed: 0
+
+loss:
+  velocity: 1.0
+  residual_endpoint: 0.5
+  map: 1.0
+  coarse_map: 0.35
+  sequence: 0.5
+  confidence: 0.05
+  warp: 0.10
+  gradient: 0.05
+  hv: 0.20
+  straightness: 0.10
+  bending: 0.01
+  anti_fold: 0.10
+  jacobian_scale: 0.02
+  preserve: 0.10
+
+train:
+  stage: full_page
+  enforce_stage_gates: false
+  output_dir: tmp/full_smoke_run
+  device: cpu
+  epochs: 1
+  batch_size: 2
+  eval_batch_size: 1
+  num_workers: 0
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  sequence_gamma: 0.8
+  mixed_precision: false

@@ -1,0 +1,42 @@
+schema_version: 2
+policy_id: typical_v33_quality_v2
+subjects:
+  candidate: v33_best
+  references:
+  - target_first
+  - target_second
+  anchor: v33_anchor
+
+validation:
+  required_stage: unified
+  required_feature_backend: qwen
+  max_epe_exclusive: 5.7501
+  min_epe_gain_exclusive: 0.0
+  min_final_win_rate_exclusive: 0.5
+  max_fold_rate_exclusive: 0.0004
+  min_jacobian_p01_inclusive: 0.01
+  require_line_epe_below_anchor: true
+  require_line_straightness_below_anchor: true
+
+typical:
+  expected_images: 40
+  line_candidates:
+    candidate: v33_best_full
+    references:
+      target_first: target_first
+      target_second: target_second
+    anchor: v33_anchor_full
+  lsd_metric: orientation_error_deg_length_weighted
+  max_mean_delta_reference_deg_inclusive: 0.0
+  min_reference_win_rate_inclusive: 0.75
+  max_reference_delta_p95_deg_inclusive: 2.0
+  max_reference_worst_delta_deg_inclusive: 5.0
+  min_reference_total_line_length_ratio_inclusive: 0.70
+  min_reference_line_length_ratio_p05_inclusive: 0.50
+
+inference:
+  max_mean_fold_rate_inclusive: 0.0004
+  max_per_image_fold_rate_inclusive: 0.001
+  min_per_image_jacobian_p01_inclusive: 0.01
+  max_mean_evaluation_valid_drop_inclusive: 0.01
+  max_per_image_evaluation_valid_drop_inclusive: 0.05

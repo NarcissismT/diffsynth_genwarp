@@ -1,0 +1,39 @@
+seed: 1337
+
+data:
+  train_manifest: data/train_cpdocflow.jsonl
+  val_manifest: data/val_cpdocflow.jsonl
+  input_work_size: [512, 512]
+  output_work_size: [512, 512]
+  # Fail closed: do not add raft_pseudo or unknown here to unlock a GT gate.
+  allowed_label_provenance:
+    - analytic_gt
+    - renderer_gt
+    - synthetic_analytic
+
+model:
+  base_channels: 32
+  feature_channels: 128
+  max_displacement_ratio: 0.45
+  min_log_variance: -6.0
+  max_log_variance: 6.0
+
+loss:
+  map: 1.0
+  confidence: 0.05
+  warp: 0.10
+  gradient: 0.05
+  bending: 0.01
+  anti_fold: 0.10
+
+train:
+  output_dir: runs/det_coarse/seed-1337
+  device: auto
+  epochs: 20
+  batch_size: 2
+  eval_batch_size: 2
+  num_workers: 4
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  mixed_precision: true

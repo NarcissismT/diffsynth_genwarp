@@ -1,0 +1,1 @@
+{"id":"sample_0001","warped":"images/sample_0001_warped.png","target":"images/sample_0001_rectified.png","flow":"flows/sample_0001_backward.npy","valid":"masks/sample_0001_valid.npy","flow_format":"displacement"}

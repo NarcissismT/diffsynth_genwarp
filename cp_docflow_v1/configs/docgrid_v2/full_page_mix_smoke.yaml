@@ -1,0 +1,20 @@
+extends: ../full_smoke.yaml
+
+data:
+  stage5_mix:
+    enabled: true
+    low_input_size: [32, 32]
+    low_output_size: [32, 32]
+    structure_patch_size: [32, 32]
+    probabilities:
+      low_page: 0.34
+      structure_patch: 0.33
+      full_page: 0.33
+    samples_per_epoch_multiplier: 3.0
+
+train:
+  stage: full_page
+  output_dir: tmp/full_page_mix_smoke_run
+  batch_size: 1
+  eval_batch_size: 1
+

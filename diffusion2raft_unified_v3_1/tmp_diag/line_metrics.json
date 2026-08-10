@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "warped": {
+      "mean": 9.120606473088264,
+      "median": 5.320161581039429,
+      "n": 40
+    },
+    "prior": {
+      "mean": 8.017796611785888,
+      "median": 4.410616397857666,
+      "n": 40
+    },
+    "unified": {
+      "mean": 7.066014783084393,
+      "median": 3.0967570543289185,
+      "n": 40
+    },
+    "baseline": {
+      "mean": 3.0336623955518007,
+      "median": 2.172683596611023,
+      "n": 40
+    }
+  },
+  "per_image": [
+    {
+      "name": "16ELhPMMHYV40g57W0XeMfH7_a.jpg",
+      "warped": 9.8,
+      "prior": 10.213,
+      "unified": 10.343,
+      "baseline": 8.288
+    },
+    {
+      "name": "1DbDh15f1F1fQ05dRFAE35HR_a.jpg",
+      "warped": 1.7,
+      "prior": 1.527,
+      "unified": 1.018,
+      "baseline": 0.35
+    },
+    {
+      "name": "1EV00KT9DRaVUUJL2bAgSEL8_a.jpg",
+      "warped": 1.356,
+      "prior": 1.466,
+      "unified": 1.117,
+      "baseline": 0.281
+    },
+    {
+      "name": "1NbeXFV2fT4afe3UbJ32PtfK_a.jpg",
+      "warped": 4.599,
+      "prior": 4.525,
+      "unified": 3.567,
+      "baseline": 2.824
+    },
+    {
+      "name": "1ba3rBPrWDbBh7dTQ9DT1TMS_a.jpg",
+      "warped": 4.254,
+      "prior": 2.996,
+      "unified": 2.037,
+      "baseline": 0.816
+    },
+    {
+      "name": "2CdRS1fhH1LTSDRy5AYD43FH_a.jpg",
+      "warped": 4.876,
+      "prior": 3.207,
+      "unified": 1.994,
+      "baseline": 1.168
+    },
+    {
+      "name": "2da67JQUMQb2rtWbSKByAF0a_a.jpg",
+      "warped": 2.842,
+      "prior": 2.265,
+      "unified": 2.364,
+      "baseline": 2.206
+    },
+    {
+      "name": "2tbCQ7d10febagQWYMT6EhKV_a.jpg",
+      "warped": 31.242,
+      "prior": 30.217,
+      "unified": 29.923,
+      "baseline": 3.822
+    },
+    {
+      "name": "3r3XBUad0SDKJU9LM0e92dh1_a.jpg",
+      "warped": 5.983,
+      "prior": 4.752,
+      "unified": 4.582,
+      "baseline": 2.139
+    },
+    {
+      "name": "4Q3D5102RC670bSYM01h5EF4_a.jpg",
+      "warped": 4.591,
+      "prior": 3.357,
+      "unified": 2.699,
+      "baseline": 3.816
+    },
+    {
+      "name": "5HKR7V9gbBHY29fMWSaX32Q8_a.jpg",
+      "warped": 8.36,
+      "prior": 3.509,
+      "unified": 1.727,
+      "baseline": 5.107
+    },
+    {
+      "name": "5yB2tFd1PV5Fa2SLLWrXRg7U_a.jpg",
+      "warped": 3.389,
+      "prior": 2.52,
+      "unified": 2.232,
+      "baseline": 0.946
+    },
+    {
+      "name": "6DJNJ4FbDa0JHN8R5f1XEMQK_a.jpg",
+      "warped": 10.037,
+      "prior": 9.005,
+      "unified": 5.835,
+      "baseline": 4.491
+    },
+    {
+      "name": "7e8eSH1YD4Qa4gP2RUCab6Q6_a.jpg",
+      "warped": 5.038,
+      "prior": 4.56,
+      "unified": 3.766,
+      "baseline": 4.566
+    },
+    {
+      "name": "8DdQ3A1H4UQRQadKDMTtWCBJ_a.jpg",
+      "warped": 9.022,
+      "prior": 8.955,
+      "unified": 6.443,
+      "baseline": 3.986
+    },
+    {
+      "name": "A7NMCUty90b1aUJMF9FfThBY_a.jpg",
+      "warped": 2.01,
+      "prior": 2.325,
+      "unified": 1.354,
+      "baseline": 0.542
+    },
+    {
+      "name": "AC3FKYgPESP4V1EKBQSeQHH1_a.jpg",
+      "warped": 11.123,
+      "prior": 11.151,
+      "unified": 10.587,
+      "baseline": 8.387
+    },
+    {
+      "name": "CJDh0JQD4RbB84W5EfMDYrrB_a.jpg",
+      "warped": 3.991,
+      "prior": 3.367,
+      "unified": 2.218,
+      "baseline": 1.08
+    },
+    {
+      "name": "DQH8La9PTDAPQh75DP3C5UKe_a.jpg",
+      "warped": 2.35,
+      "prior": 2.215,
+      "unified": 1.608,
+      "baseline": 0.784
+    },
+    {
+      "name": "DQR8FKBY5d6edYQdBeCWb0aB_a.jpg",
+      "warped": 34.735,
+      "prior": 33.481,
+      "unified": 33.113,
+      "baseline": 5.925
+    },
+    {
+      "name": "ESM2QNNQadP4BR4AFah12a20_a.jpg",
+      "warped": 10.587,
+      "prior": 8.005,
+      "unified": 7.256,
+      "baseline": 5.615
+    },
+    {
+      "name": "FTEKCRtVAY93UrTVYf3F5yhW_a.jpg",
+      "warped": 4.269,
+      "prior": 3.555,
+      "unified": 2.888,
+      "baseline": 1.918
+    },
+    {
+      "name": "J1NrQP4D3NDUd77gYT3heCUF_a.jpg",
+      "warped": 4.069,
+      "prior": 3.482,
+      "unified": 2.3,
+      "baseline": 0.803
+    },
+    {
+      "name": "JeA6NUF20VVP9QLHfPWDU3a6_a.jpg",
+      "warped": 2.781,
+      "prior": 2.132,
+      "unified": 1.503,
+      "baseline": 0.842
+    },
+    {
+      "name": "LTRY1CYPASr2U42gfSM1V03U_a.jpg",
+      "warped": 2.332,
+      "prior": 2.147,
+      "unified": 1.714,
+      "baseline": 1.373
+    },
+    {
+      "name": "Lb6U5CHBA8LJ8VKJMDbJFTAW_a.jpg",
+      "warped": 35.545,
+      "prior": 35.015,
+      "unified": 34.441,
+      "baseline": 3.833
+    },
+    {
+      "name": "MV44X5erCfYfARD144ULQ5U2_a.jpg",
+      "warped": 1.801,
+      "prior": 1.09,
+      "unified": 0.739,
+      "baseline": 0.442
+    },
+    {
+      "name": "Q8T9P9heRtSUMVKryL1K95MC_a.jpg",
+      "warped": 8.657,
+      "prior": 7.035,
+      "unified": 6.446,
+      "baseline": 5.374
+    },
+    {
+      "name": "QE9bhdPfA792B4LRQCLQD3eA_a.jpg",
+      "warped": 2.797,
+      "prior": 2.216,
+      "unified": 1.969,
+      "baseline": 1.203
+    },
+    {
+      "name": "QX2h0dfKatbN2UJY2QPX3W4A_a.jpg",
+      "warped": 16.173,
+      "prior": 11.836,
+      "unified": 8.912,
+      "baseline": 1.248
+    },
+    {
+      "name": "R3T2WaefFEa04gERKe5fYHMU_a.jpg",
+      "warped": 5.742,
+      "prior": 4.296,
+      "unified": 2.978,
+      "baseline": 1.881
+    },
+    {
+      "name": "a2b5rWhRUYXSJP19CdFUb1bE_a.jpg",
+      "warped": 5.602,
+      "prior": 6.661,
+      "unified": 3.215,
+      "baseline": 4.723
+    },
+    {
+      "name": "aaEHAY6hC2B5f5YHJWfrTy0P_a.jpg",
+      "warped": 1.571,
+      "prior": 1.227,
+      "unified": 0.704,
+      "baseline": 0.169
+    },
+    {
+      "name": "b6bQDdag3DNMKFe2aVCDQre7_a.jpg",
+      "warped": 33.341,
+      "prior": 32.008,
+      "unified": 33.331,
+      "baseline": 16.479
+    },
+    {
+      "name": "dH0hWBg4VP9NL9TY0NbgCL1R_a.jpg",
+      "warped": 5.891,
+      "prior": 5.046,
+      "unified": 3.245,
+      "baseline": 2.328
+    },
+    {
+      "name": "dNV2hVyY0eCTPXXEHDDWNC2T_a.jpg",
+      "warped": 24.935,
+      "prior": 18.256,
+      "unified": 15.592,
+      "baseline": 1.024
+    },
+    {
+      "name": "f24X1MaM3Sb25D52SAe9XQg3_a.jpg",
+      "warped": 3.164,
+      "prior": 2.848,
+      "unified": 1.683,
+      "baseline": 0.454
+    },
+    {
+      "name": "g5Q9W9JUHba1LBBPa6CAUHRa_a.jpg",
+      "warped": 15.585,
+      "prior": 10.078,
+      "unified": 9.187,
+      "baseline": 2.789
+    },
+    {
+      "name": "gYVt22gMNyL0SLR9X7fJdWaA_a.jpg",
+      "warped": 9.176,
+      "prior": 7.381,
+      "unified": 6.371,
+      "baseline": 3.317
+    },
+    {
+      "name": "typical.jpg",
+      "warped": 9.509,
+      "prior": 10.788,
+      "unified": 9.636,
+      "baseline": 4.006
+    }
+  ]
+}

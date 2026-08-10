@@ -1,0 +1,84 @@
+seed: 1337
+
+data:
+  train_manifest: data/train_cpdocflow.jsonl
+  val_manifest: data/val_cpdocflow.jsonl
+  input_work_size: [512, 512]
+  output_work_size: [512, 512]
+  allowed_label_provenance: [analytic_gt, renderer_gt]
+
+model:
+  coarse:
+    base_channels: 32
+    feature_channels: 128
+    max_displacement_ratio: 0.45
+    min_log_variance: -6.0
+    max_log_variance: 6.0
+  qwen_backend: qwen
+  qwen:
+    model_id: /juicefs-algorithm/data/IPT/yuang_feng/DiffSynth-Studio/models/Qwen-Image-Edit
+    prompt: >-
+      Rectify the warped photographed document into a flat front-facing page on
+      the same canvas. Preserve every character, line, illustration, and margin.
+      Change geometry only; do not add, remove, rewrite, or restyle content.
+    feature_num_inference_steps: 4
+    feature_type: hidden
+    feature_layers: [-24, -12, -1]
+    hidden_channels: 3072
+    feature_dtype: bfloat16
+    feature_quantization: none
+    feature_seed: 0
+    guidance_scale: 1.0
+    local_files_only: true
+    cpu_offload: true
+    device_map: null
+  qwen_feature_channels: 96
+  fusion_channels: 128
+  fusion_mode: gated
+  hv_channels: 32
+  velocity_hidden_channels: 192
+  velocity_time_channels: 192
+  max_velocity_px: 64.0
+  anchor_strength: 0.25
+  sigma_max: 4.0
+  fm_steps: 4
+  enable_flow_matching: true
+  refiner_hidden_channels: 128
+  refiner_iterations: 4
+  refiner_max_step_px: 2.0
+  confidence_preserve_strength: 0.75
+  inference_seed: 0
+
+loss:
+  velocity: 1.0
+  map: 1.0
+  coarse_map: 0.35
+  sequence: 0.5
+  confidence: 0.05
+  warp: 0.10
+  gradient: 0.05
+  bending: 0.01
+  anti_fold: 0.10
+  preserve: 0.10
+
+train:
+  stage: qwen
+  enforce_stage_gates: true
+  # Stage-3 checkpoint is loaded non-destructively; only Qwen adapter/fusion/
+  # velocity modules are trainable in this stage.
+  parent_checkpoint: runs/coord_fm/seed-1337/best.pt
+  gate_receipts:
+    gate1: runs/gates/gate1.json
+    gate2: runs/gates/gate2.json
+    gate3: runs/gates/gate3.json
+  output_dir: runs/qwen_cond/seed-1337
+  device: cuda
+  epochs: 10
+  batch_size: 1
+  eval_batch_size: 1
+  num_workers: 2
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  sequence_gamma: 0.8
+  mixed_precision: true

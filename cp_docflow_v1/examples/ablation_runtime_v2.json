@@ -1,0 +1,17 @@
+{
+  "full": {},
+  "coarse_only": {"execution_stage": "coarse"},
+  "warr_only": {"execution_stage": "warr"},
+  "ode_2": {"fm_steps": 2},
+  "ode_6": {"fm_steps": 6},
+  "warr_1": {"refiner_iterations": 1},
+  "warr_2": {"refiner_iterations": 2},
+  "warr_6": {"refiner_iterations": 6},
+  "bilinear_upsampling": {"upsampling_mode": "bilinear"},
+  "qwen_off": {"use_qwen_condition": false},
+  "hv_off": {"enable_hv_condition": false},
+  "cnn_only_fusion": {"fusion_mode": "cnn_only"},
+  "concat_fusion": {"fusion_mode": "concat"},
+  "composition_gate_off": {"composition_uses_confidence": false},
+  "zero_residual_noise": {"sigma_min": 0.0, "sigma_max": 0.0}
+}

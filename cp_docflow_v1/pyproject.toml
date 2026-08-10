@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cp-docflow"
+version = "0.2.0"
+description = "DocGrid-Flow v2 confidence-protected document backward-map prediction"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "numpy>=1.24",
+  "Pillow>=10.0",
+  "PyYAML>=6.0",
+  "torch>=2.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+qwen = [
+  "accelerate>=1.2",
+  "diffusers>=0.35",
+  "safetensors>=0.4",
+  "transformers>=4.51",
+]
+
+[project.scripts]
+cpdoc-train-coarse = "cp_docflow.train_coarse:main"
+cpdoc-train-full = "cp_docflow.train_full:main"
+cpdoc-eval-coarse = "cp_docflow.evaluate:main"
+cpdoc-eval-full = "cp_docflow.evaluate_full:main"
+cpdoc-infer = "cp_docflow.infer:main"
+cpdoc-infer-full = "cp_docflow.infer_full:main"
+cpdoc-make-smoke-data = "cp_docflow.make_smoke_data:main"
+docgrid-train-coarse = "cp_docflow.train_coarse:main"
+docgrid-train = "cp_docflow.train_full:main"
+docgrid-eval = "cp_docflow.evaluate_full:main"
+docgrid-eval-frozen-prior = "cp_docflow.evaluate_frozen_prior:main"
+docgrid-infer = "cp_docflow.infer_full:main"
+docgrid-write-gate = "cp_docflow.gates:main"
+docgrid-audit-data = "cp_docflow.audit_data:main"
+docgrid-train-deterministic = "cp_docflow.training.train_deterministic:main"
+docgrid-train-warr = "cp_docflow.training.train_warr:main"
+docgrid-train-coordinate-fm = "cp_docflow.training.train_coordinate_fm:main"
+docgrid-train-qwen-condition = "cp_docflow.training.train_qwen_condition:main"
+docgrid-finetune-full-page = "cp_docflow.training.finetune_full_page:main"
+docgrid-aggregate-seeds = "cp_docflow.aggregate_seeds:main"
+docgrid-verify-repeatability = "cp_docflow.verify_repeatability:main"
+docgrid-ablate = "cp_docflow.ablation_suite:main"
+docgrid-migrate-legacy-raft = "cp_docflow.migrate_legacy_raft:main"
+docgrid-render-analytic-gt = "cp_docflow.render_analytic_gt:main"
+docgrid-merge-analytic-gt = "cp_docflow.merge_analytic_shards:main"
+docgrid-score-ocr = "cp_docflow.evaluation.ocr_metrics:main"
+docgrid-validate-qwen = "cp_docflow.validate_qwen_runtime:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
